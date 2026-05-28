@@ -1,0 +1,624 @@
+<!-- local-services-part5.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Local Services — Part 5: Communicating Strategy</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p1: #0E7C5C; --p2: #1B4F72; --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 14px rgba(0,0,0,0.28); }
+.brand-main { color: #fff; font-size: 1.35rem; font-weight: 900; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.66rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.38); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(10,123,142,0.25); color: #6FCDDF; border: 1px solid rgba(10,123,142,0.4); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+.brand { display: flex; align-items: center; }
+.series-nav { position: sticky; top: 58px; z-index: 200; background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; }
+.snav-label { color: rgba(255,255,255,0.3); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.09); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.82); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p5); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; }
+.sn-1{background:var(--p1);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);} .sn-4{background:var(--p4);} .sn-5{background:var(--p5);}
+.hero { background: var(--navy); padding: 80px 48px 72px; }
+.hero-inner { max-width: 1060px; margin: 0 auto; }
+.hero-eyebrow { color: var(--gold); font-size: 0.74rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
+.hero h1 { color: #fff; font-size: 3.1rem; font-weight: 900; line-height: 1.14; margin-bottom: 20px; }
+.hero h1 em { color: var(--p5); font-style: normal; }
+.hero-sub { color: rgba(255,255,255,0.68); font-size: 1.03rem; max-width: 600px; margin-bottom: 38px; line-height: 1.72; }
+.hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); border-radius: 20px; padding: 6px 14px; color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+.hero-pill .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p5) 0%, var(--gold) 50%, var(--p1) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 68px 0; }
+section.sec-white { background: #fff; padding: 68px 0; }
+section.sec-dark { background: var(--navy); padding: 68px 0; }
+.sh { margin-bottom: 38px; }
+.sh-tag { color: var(--p5); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-title { font-size: 1.95rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.92rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card-icon { font-size: 2rem; margin-bottom: 14px; }
+.card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card p { font-size: 0.87rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); font-weight: 700; }
+.callout { border-radius: 10px; padding: 20px 24px; margin: 28px 0; border-left: 4px solid; }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.orange { background: rgba(212,85,26,0.06); border-color: var(--orange); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.green { background: rgba(14,124,92,0.06); border-color: var(--p1); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.green .callout-label { color: var(--p1); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.85); }
+.obj-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; border-left: 4px solid var(--p5); }
+.obj-question { font-size: 0.95rem; color: var(--navy); font-weight: 700; margin-bottom: 12px; font-style: italic; }
+.obj-question::before { content: '"'; color: var(--p5); font-size: 1.5rem; margin-right: 4px; }
+.obj-question::after { content: '"'; color: var(--p5); font-size: 1.5rem; margin-left: 4px; }
+.obj-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--p5); margin-bottom: 6px; }
+.obj-answer { font-size: 0.86rem; color: var(--text); line-height: 1.65; }
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+.toc-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.toc-link { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: var(--text); font-size: 0.85rem; font-weight: 600; }
+.toc-link:hover { background: var(--navy); color: #fff; }
+.toc-num { width: 30px; height: 30px; background: var(--p5); color: #fff; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.87rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p5); }
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;} .mb32{margin-bottom:32px;}
+.translate-box { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.translate-header { display: grid; grid-template-columns: 1fr 1fr; }
+.translate-header > div { padding: 14px 18px; color: #fff; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
+.translate-header .th-left { background: var(--slate); }
+.translate-header .th-right { background: var(--p5); }
+.translate-row { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); }
+.translate-row > div { padding: 14px 18px; font-size: 0.86rem; line-height: 1.6; }
+.translate-row .tr-left { color: var(--text-light); background: #F8FAFB; }
+.translate-row .tr-right { color: var(--text); font-weight: 600; }
+
+/* CERTIFICATE COMPLETION BANNER */
+.cert-banner { background: linear-gradient(135deg, var(--p1) 0%, #0a5c43 100%); padding: 80px 48px; text-align: center; position: relative; overflow: hidden; }
+.cert-banner::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: rgba(245,166,35,0.08); border-radius: 50%; }
+.cert-banner::after { content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+.cert-inner { max-width: 620px; margin: 0 auto; position: relative; z-index: 1; }
+.cert-icon { font-size: 3rem; margin-bottom: 16px; }
+.cert-eyebrow { color: var(--gold); font-size: 0.74rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 16px; }
+.cert-title { color: #fff; font-size: 2.2rem; font-weight: 900; margin-bottom: 14px; line-height: 1.2; }
+.cert-desc { color: rgba(255,255,255,0.85); font-size: 1rem; margin-bottom: 32px; line-height: 1.65; }
+.cert-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--navy); text-decoration: none; padding: 16px 36px; border-radius: 8px; font-weight: 800; font-size: 1rem; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.cert-btn:hover { background: #FFC04F; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.28); }
+
+/* MODAL */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; display: none; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
+.modal-overlay.open { display: flex; }
+.modal { background: #fff; max-width: 880px; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); position: relative; }
+.modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.2); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; }
+.modal-close:hover { background: rgba(255,255,255,0.35); }
+.cert-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); padding: 40px 48px; text-align: center; position: relative; border-bottom: 4px solid var(--gold); }
+.cert-header-badge { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.7rem; font-weight: 800; padding: 5px 14px; border-radius: 20px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.cert-header h2 { color: #fff; font-size: 2rem; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; }
+.cert-header p { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+.cert-header strong { color: var(--gold); }
+.cert-body { padding: 40px 48px; }
+.cert-intro { text-align: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.cert-intro h3 { color: var(--navy); font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+.cert-intro p { color: var(--text-light); font-size: 0.88rem; }
+.takeaway-section { margin-bottom: 24px; }
+.takeaway-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid; }
+.takeaway-num { width: 32px; height: 32px; border-radius: 8px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; }
+.takeaway-title { font-weight: 800; color: var(--navy); font-size: 1rem; }
+.tk-1 .takeaway-num { background: var(--p1); }
+.tk-1 .takeaway-header { border-color: var(--p1); }
+.tk-2 .takeaway-num { background: var(--p2); }
+.tk-2 .takeaway-header { border-color: var(--p2); }
+.tk-3 .takeaway-num { background: var(--p3); }
+.tk-3 .takeaway-header { border-color: var(--p3); }
+.tk-4 .takeaway-num { background: var(--p4); }
+.tk-4 .takeaway-header { border-color: var(--p4); }
+.tk-5 .takeaway-num { background: var(--p5); }
+.tk-5 .takeaway-header { border-color: var(--p5); }
+.takeaway-list { list-style: none; padding: 0 0 0 4px; }
+.takeaway-list li { font-size: 0.86rem; color: var(--text); padding: 6px 0; line-height: 1.6; display: flex; gap: 10px; align-items: flex-start; }
+.takeaway-list li::before { content: '✓'; color: var(--success); font-weight: 800; flex-shrink: 0; }
+.cert-footer { background: var(--light-gray); padding: 28px 48px; text-align: center; border-top: 1px solid var(--border); }
+.cert-signature { display: flex; justify-content: space-between; align-items: flex-end; max-width: 500px; margin: 0 auto 18px; padding-top: 12px; }
+.sig-col { text-align: left; }
+.sig-col .sig-line { border-top: 1px solid var(--text); padding-top: 4px; min-width: 180px; }
+.sig-col .sig-label { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+.sig-col .sig-value { font-size: 0.9rem; color: var(--navy); font-weight: 700; }
+.cert-meta { color: var(--text-light); font-size: 0.78rem; }
+.cert-print-btn { background: var(--navy); color: #fff; border: none; padding: 10px 24px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; margin-top: 14px; }
+.cert-print-btn:hover { background: var(--navy-dark); }
+
+.footer { background: #0D1C2B; padding: 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-meta { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.74rem; }
+[id]::before { content: ''; display: block; height: 76px; margin-top: -76px; pointer-events: none; }
+@media (max-width: 900px) {
+  .g2,.g3,.g4 { grid-template-columns: 1fr; }
+  .toc-grid,.recap-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.1rem; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+  .translate-header, .translate-row { grid-template-columns: 1fr; }
+  .cert-header, .cert-body, .cert-footer { padding-left: 24px; padding-right: 24px; }
+  .cert-header h2 { font-size: 1.5rem; }
+  .cert-signature { flex-direction: column; gap: 16px; align-items: flex-start; }
+}
+@media print {
+  body * { visibility: hidden; }
+  .modal-overlay, .modal-overlay * { visibility: visible; }
+  .modal-overlay { position: absolute; background: #fff; padding: 0; }
+  .modal { box-shadow: none; max-width: 100%; }
+  .modal-close, .cert-print-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">
+    <span class="brand-main">Outer<em>Box</em></span>
+    <span class="brand-school">B·SCHOOL</span>
+  </div>
+  <span class="nav-badge">Part 5 of 5 · Local Services</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="local-services-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="local-services-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Considerations</a>
+  <a href="local-services-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>Paid Considerations</a>
+  <a href="local-services-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Email Considerations</a>
+  <a href="local-services-part5.html" class="snav-link active"><span class="snav-num sn-5">5</span>Communicating Strategy</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">B·School Training Series — Local Services</div>
+    <h1>Communicating<br><em>Strategy</em></h1>
+    <p class="hero-sub">Translating channel-level work into business outcomes the client cares about, handling the objections you'll actually hear at small budgets, and earning trust as a local strategic partner.</p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span>Part 5 of 5 · Final</span>
+      <span class="hero-pill"><span class="dot"></span>~40 min</span>
+      <span class="hero-pill"><span class="dot"></span>Certificate at the end</span>
+    </div>
+  </div>
+</section>
+<div class="accent-bar"></div>
+
+<!-- INTRO -->
+<section class="sec-white">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">The Communication Principle</div>
+      <h2 class="sh-title">Local Clients Don't Buy Tactics — They Buy Outcomes</h2>
+      <p class="sh-desc">A local plastic surgeon does not care about long-tail keyword expansion or quality score. They care about: "Did the phone ring more this month than last? Are the patients walking in the right kind of patients? Is the spend working?" Your job in every conversation is to translate the work into language tied to those outcomes — without dumbing it down.</p>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 The Core Principle</div>
+      <p>Lead every conversation with <strong style="color:var(--gold)">what changed for the business</strong> — and then show the work that drove it. Lead with tactics and the conversation becomes a vendor update. Lead with outcomes and the conversation becomes a strategic discussion. The work is the same; the framing decides whether you're seen as an agency that runs campaigns or a partner that grows the practice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="sec-light" id="toc">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Part 5 — Navigation</div>
+      <h2 class="sh-title">What We're Covering</h2>
+    </div>
+    <div class="toc-grid">
+      <a href="#translate" class="toc-link"><span class="toc-num">1</span>Translating Channel Metrics Into Business Language</a>
+      <a href="#expectations" class="toc-link"><span class="toc-num">2</span>Setting Expectations on Small Budgets</a>
+      <a href="#objections" class="toc-link"><span class="toc-num">3</span>The Objections You'll Actually Hear</a>
+      <a href="#hipaa-comms" class="toc-link"><span class="toc-num">4</span>Communicating Around HIPAA Constraints</a>
+      <a href="#reviews-cadence" class="toc-link"><span class="toc-num">5</span>Review &amp; Reporting Cadence That Works</a>
+      <a href="#growth" class="toc-link"><span class="toc-num">6</span>Leading the Conversation About Growth</a>
+      <a href="#recap" class="toc-link"><span class="toc-num">7</span>Recap — The Whole Series Together</a>
+      <a href="#certificate" class="toc-link"><span class="toc-num">8</span>Certificate of Completion</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSLATE -->
+<section class="sec-white" id="translate">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1</div>
+      <h2 class="sh-title">Translating Channel Metrics Into Business Language</h2>
+      <p class="sh-desc">The single most common gap between agency speak and what local clients actually want to hear. These translations are not dumbing down — they're connecting the work to the business outcome.</p>
+    </div>
+
+    <div class="translate-box">
+      <div class="translate-header">
+        <div class="th-left">What We Say (Tactical)</div>
+        <div class="th-right">What the Client Hears (Business)</div>
+      </div>
+      <div class="translate-row">
+        <div class="tr-left">"Our Local Pack visibility improved 22% this month."</div>
+        <div class="tr-right">"More people in your service area saw your business in Google's map results — at the moment they were ready to call."</div>
+      </div>
+      <div class="translate-row">
+        <div class="tr-left">"CTR on the Local Geo Modified campaign is up to 6.8%."</div>
+        <div class="tr-right">"More of the people who saw your ads actually clicked through — meaning our targeting is matching real intent better than before."</div>
+      </div>
+      <div class="translate-row">
+        <div class="tr-left">"We added 14 new service area pages with unique local content."</div>
+        <div class="tr-right">"We built dedicated pages for each neighborhood you serve — so when someone in that specific area searches, Google has a clear reason to show them you instead of a competitor."</div>
+      </div>
+      <div class="translate-row">
+        <div class="tr-left">"GBP profile views increased 38% YoY."</div>
+        <div class="tr-right">"Almost 40% more people found your Google Business Profile this year than last year — and that profile is the single biggest driver of calls and direction requests from the map."</div>
+      </div>
+      <div class="translate-row">
+        <div class="tr-left">"Negative keyword list expanded by 87 terms across campaigns."</div>
+        <div class="tr-right">"We blocked your ads from showing for searches that aren't real buyers for you — which means your budget went further toward the right kind of leads."</div>
+      </div>
+      <div class="translate-row">
+        <div class="tr-left">"Call conversion volume up 19% on a 4% spend increase."</div>
+        <div class="tr-right">"You spent slightly more — and you got significantly more calls. The efficiency of your spend improved."</div>
+      </div>
+    </div>
+
+    <div class="callout green mt32">
+      <div class="callout-label">The Rule</div>
+      <p>Every metric you share should land with: <em>"...which means [outcome for the business]."</em> If you can't finish that sentence cleanly, the metric isn't ready to share yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPECTATIONS -->
+<section class="sec-light" id="expectations">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2</div>
+      <h2 class="sh-title">Setting Expectations on Small Budgets</h2>
+      <p class="sh-desc">A $3K/month account is not going to outrank a regional chain with a $25K/month program in 90 days. Setting expectations correctly at the start of an engagement is what protects the relationship six months in.</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <h3>SEO Takes Time — Be Specific</h3>
+        <p>"Local SEO compounds over 6–12 months. In the first 90 days you should see GBP improvements and on-page foundation work. Ranking gains typically show up in months 3–6 and accelerate after that."</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Paid Search Is Faster But Bounded</h3>
+        <p>"Paid will generate leads in week one. But the ceiling on volume is set by your budget and the search demand in your area — we can optimize efficiency, not invent demand that isn't there."</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h3>Lead Quality vs. Volume</h3>
+        <p>"On a tight budget, we'd rather you get 12 highly qualified leads than 50 unqualified ones — because your team's time is also a cost. We'll trade volume for quality and you'll see the difference in your booked-appointment rate."</p>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ The Promise to Never Make</div>
+      <p>"We'll get you to #1 in [city]." You don't control Google's algorithm, you don't control your competitors' investment, and you don't control searcher device location. Promising specific rankings is the fastest way to break trust when the inevitable algorithmic volatility hits. Promise process, effort, and the metrics you actually move — not a placement you can't guarantee.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<section class="sec-white" id="objections">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3</div>
+      <h2 class="sh-title">The Objections You'll Actually Hear</h2>
+      <p class="sh-desc">These come up across almost every local services account. Having a prepared response — grounded in the work we actually do — protects both the client relationship and the program.</p>
+    </div>
+
+    <div class="g2">
+      <div class="obj-card">
+        <div class="obj-question">My nephew said we should just be doing Facebook ads instead.</div>
+        <div class="obj-label">How to Respond</div>
+        <div class="obj-answer">"Facebook can be valuable for awareness, especially for visual services like yours. But the searches happening right now — people typing 'med spa near me' or 'facial plastic surgeon Houston' — those are buyers ready to book. Capturing them on Google is higher intent. Facebook works best as an additional layer when budget allows, not a replacement for capturing active demand."</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-question">Why aren't we showing up when I search from my house?</div>
+        <div class="obj-label">How to Respond</div>
+        <div class="obj-answer">"Google personalizes results based on your search history, your location, and even what device you're on. Your own search is the least reliable test because Google knows you own the business. Let's look at the actual ranking data from our tools, which simulate clean searches from different locations in your service area — that's the real picture."</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-question">Our competitor is everywhere — they must be spending a fortune. Should we match them?</div>
+        <div class="obj-label">How to Respond</div>
+        <div class="obj-answer">"Maybe — or maybe they've been at it for 5 years and the visibility you're seeing is the compounding result of that effort. Let's look at where they actually outrank you, why, and what specific moves we can make at your current budget to close the most important gaps first. Matching their spend isn't always the right play; out-targeting them in your highest-intent pockets often is."</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-question">I got a bad review last week. Can you make it go away?</div>
+        <div class="obj-label">How to Respond</div>
+        <div class="obj-answer">"If it violates Google's policies — fake review, off-topic, attack — we'll report it, but removal is inconsistent. The more reliable play is volume: actively gathering new positive reviews so the rating recovers quickly and any single negative gets diluted. One bad review out of 200 is invisible — and a real review acquisition program prevents this from being a recurring problem."</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-question">I want to target the whole metro area — Houston, not just Tomball.</div>
+        <div class="obj-label">How to Respond</div>
+        <div class="obj-answer">"If you genuinely service the whole metro, we can absolutely expand. But here's the trade-off: at your current budget, broader targeting means less efficient spend per city. We typically see hyperlocal terms — like 'pool builders Tomball' — convert significantly better than metro-wide. Let's start with hyperlocal dominance and expand outward as budget and capacity grow."</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-question">Can I just have you listen to the calls and tell me which ones are good leads?</div>
+        <div class="obj-label">How to Respond (for HIPAA clients)</div>
+        <div class="obj-answer">"Because of HIPAA, we don't have access to your call recordings or lead content — that protects both you and your patients. What we can do is track call counts, source attribution, and patterns in the keywords driving calls. The lead-quality conversation works best as a partnership: your intake team flags any trends they're seeing, and we use that signal to adjust targeting accordingly."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIPAA COMMS -->
+<section class="sec-light" id="hipaa-comms">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4</div>
+      <h2 class="sh-title">Communicating Around HIPAA Constraints</h2>
+      <p class="sh-desc">For healthcare and legal clients, the lack of access to lead-level content is a real operational gap. How you talk about it shapes whether the client sees it as a limitation or as professional discipline.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <h3>🔒 Frame It as Professional Discipline, Not Limitation</h3>
+        <p style="margin-top:10px">When the client asks why you can't review calls or forms, the right framing is: "We don't access PHI because that protects your practice and your patients. We work entirely from aggregated, de-identified performance data — which still gives us everything we need to optimize." This sets you up as a HIPAA-aware partner, not a hamstrung vendor.</p>
+      </div>
+      <div class="card">
+        <h3>🤝 Build the Feedback Loop with the Client's Team</h3>
+        <p style="margin-top:10px">Replace what you can't see with what they can. Ask the intake team monthly: "Any patterns in the lead types — too many of one procedure, too few of another, geography that's off?" Bring this back into the program. The conversation itself becomes a strategic asset.</p>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-label">The Strategic Reframe</div>
+      <p>For a HIPAA-bound client, your measurement focus shifts from "what did the lead say?" to "what patterns are the program producing, and what feedback are we getting from the practice?" That shift, communicated confidently, is what separates a partner who understands the regulated environment from a vendor who's struggling against it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS CADENCE -->
+<section class="sec-white" id="reviews-cadence">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5</div>
+      <h2 class="sh-title">Review &amp; Reporting Cadence That Works</h2>
+      <p class="sh-desc">Most local clients don't have hours to spend in reports. The cadence that earns the most trust is short, focused, and consistent.</p>
+    </div>
+
+    <table class="tbl mb32">
+      <thead><tr><th>Touchpoint</th><th>Frequency</th><th>What to Cover</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Monthly Report</strong></td><td>Monthly</td><td>Top-line outcomes (leads, calls, GBP actions), what we did, what we're doing next. Keep to 1–2 pages of substance.</td></tr>
+        <tr><td><strong>Strategy Call</strong></td><td>Monthly or Quarterly (by tier)</td><td>30–45 minutes. Lead with business outcomes, walk through priorities, capture client-side feedback on lead quality.</td></tr>
+        <tr><td><strong>Quick Wins Updates</strong></td><td>As they happen</td><td>Short Slack/email when a meaningful improvement lands — new top-5 ranking, big GBP milestone, campaign-level efficiency gain. Keeps the relationship warm between formal touchpoints.</td></tr>
+        <tr><td><strong>Annual / Bi-Annual Strategy Review</strong></td><td>1–2x per year</td><td>Step back from monthly tactics. Reassess service areas, competitive landscape, budget allocation, and channel mix.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold">
+      <div class="callout-label">The Reporting Trap to Avoid</div>
+      <p>Don't send a 40-slide deck full of channel-level metrics to an Essentials 1 client who has 15 minutes. They will not read it, and worse, they'll start to feel overwhelmed by what they're paying for. Match the depth of the report to the time the client actually has — and put the business-outcome translation at the very top, where they'll see it first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GROWTH -->
+<section class="sec-light" id="growth">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6</div>
+      <h2 class="sh-title">Leading the Conversation About Growth</h2>
+      <p class="sh-desc">The clients who stay longest and grow into higher tiers are the ones where the agency is proactively shaping the conversation about what's possible next.</p>
+    </div>
+
+    <div class="g3">
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>Expanding the Service Area</h3>
+        <p>When the current area is performing, propose layering in adjacent towns. New service area pages, new geo-modified campaigns, new GBP service-area updates. This is one of the most natural growth conversations in local.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">➕</div>
+        <h3>Adding a Channel</h3>
+        <p>When Paid Search hits diminishing returns at the current budget, that's the moment to introduce Paid Social or Email — not before. Tie the recommendation to a real performance ceiling you're showing in the data.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h3>Tier Upgrade</h3>
+        <p>When the work consistently outpaces the scope of the current tier — more service lines to support, more locations, more sophisticated reporting needed — that's a real upgrade conversation. Frame it as growth, not as needing more money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh"><div class="sh-tag wht">The Whole Series — Recap</div><h2 class="sh-title wht">What You Can Now Do Across the Full Local Services Vertical</h2><p class="sh-desc wht">After completing all 5 parts of this training, you should be able to operate confidently across the full local services book.</p></div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Foundations</div><div class="recap-desc">Apply the local-first mindset, identify client type and tier, and avoid the eCommerce-playbook trap.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">SEO Considerations</div><div class="recap-desc">Distinguish Local Pack vs. Local Organic, manage GBP, build service area pages, and apply hyperlocal keyword strategy.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Paid Considerations</div><div class="recap-desc">Build the three-campaign structure, deploy proactive negatives, write local-first ad copy, and protect small budgets.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Email Considerations</div><div class="recap-desc">Qualify email fit, choose programs that match local business models, and handle HIPAA-aware content for healthcare clients.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Communicating Strategy</div><div class="recap-desc">Translate channel metrics into business outcomes, handle objections at tight budgets, and lead growth conversations as a partner.</div></div>
+      <div class="recap-item"><div class="recap-num">🎓</div><div class="recap-title">Ready for the Real Accounts</div><div class="recap-desc">You can now operate effectively on Backyard Oasis, Dr. Funk, Belage Center, Blades Wellness, and the broader local services book.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE BANNER -->
+<section class="cert-banner" id="certificate">
+  <div class="cert-inner">
+    <div class="cert-icon">🎓</div>
+    <div class="cert-eyebrow">Training Complete</div>
+    <div class="cert-title">Claim Your Certificate of Completion</div>
+    <div class="cert-desc">You've completed all 5 parts of the OBx B-School Local Services Vertical Training. Generate your certificate, featuring the 5 core takeaways from each section.</div>
+    <button class="cert-btn" onclick="document.getElementById('certModal').classList.add('open')">
+      View Certificate →
+    </button>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="certModal">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('certModal').classList.remove('open')">×</button>
+    <div class="cert-header">
+      <div class="cert-header-badge">OBx B·School</div>
+      <h2>Certificate of Completion</h2>
+      <p>Local Services Vertical Training · <strong>5 Parts · All Sections</strong></p>
+    </div>
+    <div class="cert-body">
+      <div class="cert-intro">
+        <h3>Awarded Upon Successful Completion</h3>
+        <p>This certificate recognizes mastery of the OBx Local Services vertical training, including the 5 core takeaways from each section below.</p>
+      </div>
+
+      <div class="takeaway-section tk-1">
+        <div class="takeaway-header">
+          <div class="takeaway-num">1</div>
+          <div class="takeaway-title">Foundations — 5 Core Takeaways</div>
+        </div>
+        <ul class="takeaway-list">
+          <li>Local services is fundamentally different from eCommerce — location IS the intent, not a filter applied after the fact.</li>
+          <li>Identify whether the client is local B2C, local B2B, or hybrid retail (storefront + eComm) before recommending any strategy.</li>
+          <li>Most local clients live in Essentials 1, Essentials 2, Essentials 3, and Professional tiers, with budgets typically $4,000/month or less — concentration beats fragmentation.</li>
+          <li>The four primary channels are SEO, Paid Search, Paid Social (when budget allows), and Email (when it makes sense) — in that order of activation.</li>
+          <li>For HIPAA-bound healthcare and legal clients, we cannot extract lead data or listen to call recordings — we work from aggregated patterns and client-side feedback instead.</li>
+        </ul>
+      </div>
+
+      <div class="takeaway-section tk-2">
+        <div class="takeaway-header">
+          <div class="takeaway-num">2</div>
+          <div class="takeaway-title">SEO Considerations — 5 Core Takeaways</div>
+        </div>
+        <ul class="takeaway-list">
+          <li>Local Pack (Google Business Profile / map results) and Local Organic (blue links with local intent) are two different SERP features with different ranking signals — always distinguish them.</li>
+          <li>Google Business Profile is the most influential factor for Local Pack visibility — eligibility, category accuracy, profile completeness, and reviews are the primary levers.</li>
+          <li>Service Area Businesses (SABs) can be configured in GBP without a public address and require dedicated unique-content service area pages to rank for individual towns.</li>
+          <li>Hyperlocal keywords (e.g., "tomball pool builders") almost always outperform broader metro terms ("houston pool builders") when the client genuinely services the hyperlocal area.</li>
+          <li>Active review acquisition is both a Local Pack ranking signal and the most reliable mitigation strategy against the occasional negative review.</li>
+        </ul>
+      </div>
+
+      <div class="takeaway-section tk-3">
+        <div class="takeaway-header">
+          <div class="takeaway-num">3</div>
+          <div class="takeaway-title">Paid Considerations — 5 Core Takeaways</div>
+        </div>
+        <ul class="takeaway-list">
+          <li>Use the three-campaign structure: Local Geo Modified (priority, most budget), National Geo Modified (captures off-area intent for in-area locations), and Near Me (device-driven local intent).</li>
+          <li>Build a complete state/region-level negative keyword list at campaign launch — not after spend has already leaked to irrelevant geographies.</li>
+          <li>Pin service to Headline 1 and location to Headline 2; for Near Me ads, remove "Near Me" from the ad text and use the real target market location.</li>
+          <li>Stick with city, town, and region targeting — ZIP-level targeting suppresses volume to the point of starving the campaign.</li>
+          <li>Start with Manual CPC until you have conversion data, then move to Maximize Conversions or Target ROAS; always pair with CallRail tracking numbers per channel.</li>
+        </ul>
+      </div>
+
+      <div class="takeaway-section tk-4">
+        <div class="takeaway-header">
+          <div class="takeaway-num">4</div>
+          <div class="takeaway-title">Email Considerations — 5 Core Takeaways</div>
+        </div>
+        <ul class="takeaway-list">
+          <li>Email earns its place — qualify fit using the three-question test (repeat dynamics, real list, tier capacity) before recommending email on any local account.</li>
+          <li>Strong fits include med spa, wellness, fitness, and hybrid retail; weak fits include one-time project services with no list.</li>
+          <li>Core local email programs are monthly newsletter, seasonal promos, appointment reminders, review/referral asks, reactivation, and educational nurture (healthcare).</li>
+          <li>For HIPAA clients, default to general/promotional content and avoid sending Protected Health Information without the proper infrastructure and patient consent.</li>
+          <li>Email's compounding value is in integration — review-request emails feed GBP/SEO, customer match feeds Paid, engaged subscribers feed retargeting.</li>
+        </ul>
+      </div>
+
+      <div class="takeaway-section tk-5">
+        <div class="takeaway-header">
+          <div class="takeaway-num">5</div>
+          <div class="takeaway-title">Communicating Strategy — 5 Core Takeaways</div>
+        </div>
+        <ul class="takeaway-list">
+          <li>Local clients don't buy tactics — they buy outcomes. Lead every conversation with what changed for the business, then show the work that drove it.</li>
+          <li>Every metric should land with "...which means [outcome for the business]" — if you can't finish that sentence cleanly, the metric isn't ready to share.</li>
+          <li>Never promise specific rankings or guaranteed positions — you don't control Google's algorithm, competitor investment, or searcher location. Promise process and the metrics you actually move.</li>
+          <li>For HIPAA clients, frame the lack of lead-level access as professional discipline, not limitation; build a feedback loop with the client's intake team to replace what you can't see directly.</li>
+          <li>Match reporting depth to the client's actual time — keep monthly outputs short and outcome-led, save deeper analysis for quarterly or annual strategy reviews.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cert-footer">
+      <div class="cert-signature">
+        <div class="sig-col">
+          <div class="sig-line">
+            <div class="sig-label">Trainee</div>
+            <div class="sig-value">_________________________</div>
+          </div>
+        </div>
+        <div class="sig-col">
+          <div class="sig-line">
+            <div class="sig-label">OBx B·School</div>
+            <div class="sig-value">Local Services Vertical</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-meta">Issued by OuterBox B·School · Confidential · Employee Training Use Only</div>
+      <button class="cert-print-btn" onclick="window.print()">🖨️ Print Certificate</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Local Services — Part 5 of 5 · Final</span>
+    <span>Communicating Strategy</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+
+<script>
+  // Close modal on overlay click
+  document.getElementById('certModal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.getElementById('certModal').classList.remove('open');
+  });
+</script>
+</body>
+</html>

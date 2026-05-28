@@ -1,0 +1,1044 @@
+<!-- local-services-part2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Local Services — Part 2: SEO Considerations</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p1: #0E7C5C; --p2: #1B4F72; --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 14px rgba(0,0,0,0.28); }
+.brand-main { color: #fff; font-size: 1.35rem; font-weight: 900; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.66rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.38); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(27,79,114,0.32); color: #7FB5E0; border: 1px solid rgba(27,79,114,0.5); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+.brand { display: flex; align-items: center; }
+.series-nav { position: sticky; top: 58px; z-index: 200; background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; }
+.snav-label { color: rgba(255,255,255,0.3); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.09); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.82); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p2); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; }
+.sn-1{background:var(--p1);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);} .sn-4{background:var(--p4);} .sn-5{background:var(--p5);}
+.hero { background: var(--navy); padding: 80px 48px 72px; position: relative; overflow: hidden; }
+.hero-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow { color: var(--gold); font-size: 0.74rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
+.hero h1 { color: #fff; font-size: 3.1rem; font-weight: 900; line-height: 1.14; margin-bottom: 20px; }
+.hero h1 em { color: var(--p2); font-style: normal; background: linear-gradient(180deg, transparent 60%, rgba(127,181,224,0.3) 60%); }
+.hero-sub { color: rgba(255,255,255,0.68); font-size: 1.03rem; max-width: 580px; margin-bottom: 38px; line-height: 1.72; }
+.hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); border-radius: 20px; padding: 6px 14px; color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+.hero-pill .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p2) 0%, var(--gold) 50%, var(--blue) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 68px 0; }
+section.sec-white { background: #fff; padding: 68px 0; }
+section.sec-dark { background: var(--navy); padding: 68px 0; }
+.sh { margin-bottom: 38px; }
+.sh-tag { color: var(--p2); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-title { font-size: 1.95rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.92rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card-icon { font-size: 2rem; margin-bottom: 14px; }
+.card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card p { font-size: 0.87rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); font-weight: 700; }
+.callout { border-radius: 10px; padding: 20px 24px; margin: 28px 0; border-left: 4px solid; }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.orange { background: rgba(212,85,26,0.06); border-color: var(--orange); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.green { background: rgba(14,124,92,0.06); border-color: var(--p1); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.green .callout-label { color: var(--p1); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.85); }
+.compare-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.compare-header { padding: 20px; color: #fff; }
+.compare-header h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+.compare-header p { font-size: 0.82rem; opacity: 0.8; }
+.cmp-pack { background: var(--p3); }
+.cmp-org { background: var(--navy); }
+.compare-body { padding: 20px; }
+.compare-body h4 { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--p2); margin: 14px 0 6px; }
+.compare-body h4:first-child { margin-top: 0; }
+.compare-body ul { list-style: none; padding: 0; }
+.compare-body li { font-size: 0.83rem; padding: 4px 0; display: flex; gap: 8px; border-bottom: 1px solid var(--border); }
+.compare-body li:last-child { border-bottom: none; }
+.compare-body li::before { content: '▸'; color: var(--p2); }
+.checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.checklist-box { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.checklist-header { padding: 14px 20px; background: var(--p2); color: #fff; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+.checklist-body { padding: 18px 20px; }
+.checklist-body ul { list-style: none; padding: 0; }
+.checklist-body li { font-size: 0.83rem; padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; }
+.checklist-body li:last-child { border-bottom: none; }
+.checklist-body li::before { content: '☐'; color: var(--p2); flex-shrink: 0; font-weight: 800; }
+.elig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.elig-box { border-radius: 12px; padding: 22px; }
+.elig-yes { background: rgba(39,174,96,0.06); border: 1px solid rgba(39,174,96,0.25); }
+.elig-no { background: rgba(231,76,60,0.05); border: 1px solid rgba(231,76,60,0.22); }
+.elig-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.elig-yes .elig-label { color: var(--success); }
+.elig-no .elig-label { color: var(--error); }
+.elig-box ul { list-style: none; padding: 0; }
+.elig-box li { font-size: 0.83rem; padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; line-height: 1.55; }
+.elig-box li:last-child { border-bottom: none; }
+.elig-yes li::before { content: '✓'; color: var(--success); font-weight: 800; }
+.elig-no li::before { content: '✗'; color: var(--error); font-weight: 800; }
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+.toc-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.toc-link { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: var(--text); font-size: 0.85rem; font-weight: 600; }
+.toc-link:hover { background: var(--navy); color: #fff; }
+.toc-num { width: 30px; height: 30px; background: var(--p2); color: #fff; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.87rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p2); }
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;} .mb32{margin-bottom:32px;}
+.code-block { background: #1a2733; color: #E0E6ED; border-radius: 10px; padding: 18px 22px; font-family: 'SF Mono', Consolas, Monaco, monospace; font-size: 0.78rem; line-height: 1.65; overflow-x: auto; margin: 20px 0; border-left: 4px solid var(--gold); }
+.code-block .ck { color: #FFC04F; }
+.code-block .cs { color: #7FB5E0; }
+.code-block .cv { color: #B5E0A8; }
+.example-link-box { background: var(--light-gray); border-radius: 10px; padding: 18px 22px; margin: 18px 0; border-left: 4px solid var(--p2); }
+.example-link-box-label { font-size: 0.7rem; font-weight: 800; color: var(--p2); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.example-link-box a { color: var(--navy); font-size: 0.85rem; text-decoration: none; font-family: 'SF Mono', Consolas, Monaco, monospace; display: block; padding: 4px 0; border-bottom: 1px dashed var(--border); word-break: break-all; }
+.example-link-box a:last-child { border-bottom: none; }
+.example-link-box a:hover { color: var(--p3); text-decoration: underline; }
+.nap-comp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+.nap-box { border-radius: 10px; padding: 18px 20px; border: 1px solid; }
+.nap-good { background: rgba(39,174,96,0.05); border-color: rgba(39,174,96,0.22); }
+.nap-bad { background: rgba(231,76,60,0.05); border-color: rgba(231,76,60,0.22); }
+.nap-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+.nap-good .nap-label { color: var(--success); }
+.nap-bad .nap-label { color: var(--error); }
+.nap-line { font-size: 0.82rem; color: var(--text); padding: 4px 0; font-family: 'SF Mono', Consolas, Monaco, monospace; }
+.nap-line .diff { background: rgba(231,76,60,0.18); padding: 1px 4px; border-radius: 3px; }
+.trigger-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px; border-top: 4px solid var(--p3); }
+.trigger-icon { font-size: 1.6rem; margin-bottom: 10px; }
+.trigger-title { font-weight: 800; color: var(--navy); font-size: 0.96rem; margin-bottom: 8px; }
+.trigger-desc { font-size: 0.83rem; color: var(--text-light); line-height: 1.6; }
+.next-part-cta { background: var(--navy-dark); padding: 56px 48px; text-align: center; }
+.npc-inner { max-width: 580px; margin: 0 auto; }
+.npc-label { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title { color: #fff; font-size: 1.55rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc { color: rgba(255,255,255,0.52); font-size: 0.88rem; margin-bottom: 26px; line-height: 1.68; }
+.npc-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--p3); color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; }
+.footer { background: #0D1C2B; padding: 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-meta { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.74rem; }
+[id]::before { content: ''; display: block; height: 76px; margin-top: -76px; pointer-events: none; }
+@media (max-width: 900px) {
+  .g2,.g3,.g4,.checklist-grid,.elig-grid,.nap-comp { grid-template-columns: 1fr; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .recap-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.1rem; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">
+    <span class="brand-main">Outer<em>Box</em></span>
+    <span class="brand-school">B·SCHOOL</span>
+  </div>
+  <span class="nav-badge">Part 2 of 5 · Local Services</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="local-services-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="local-services-part2.html" class="snav-link active"><span class="snav-num sn-2">2</span>SEO Considerations</a>
+  <a href="local-services-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>Paid Considerations</a>
+  <a href="local-services-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Email Considerations</a>
+  <a href="local-services-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Communicating Strategy</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">B·School Training Series — Local Services</div>
+    <h1>Local <em>SEO</em><br>Considerations</h1>
+    <p class="hero-sub">Local Pack vs. Local Organic, Google Business Profile, service area pages, schema markup, NAP consistency, backlink profile review, reputation, and the hyperlocal keyword approach that wins local search.</p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span>Part 2 of 5</span>
+      <span class="hero-pill"><span class="dot"></span>~60 min</span>
+    </div>
+  </div>
+</section>
+<div class="accent-bar"></div>
+
+<!-- INTRO -->
+<section class="sec-white">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">The Core SEO Principle for Local</div>
+      <h2 class="sh-title">Local SEO Is a Refinement, Not a Replacement</h2>
+      <p class="sh-desc">Local SEO is a refinement of general SEO principles — not a separate discipline. The primary adjustment is making sure the target geographical area is integrated into core on-page elements: page titles, H1s, headings, internal links, and meta descriptions. Everything else builds from there.</p>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 The Local Client Filter</div>
+      <p>A local SEO approach is intended for businesses <strong style="color:var(--gold)">contractually obligated to serve specific areas</strong> or that genuinely operate within those defined locations. Don't "localize" a site solely because a client gets a majority of their work in a specific area — that can unintentionally hinder national performance for businesses that actually have national reach. Always confirm the service-area reality with the client before localizing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="sec-light" id="toc">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Part 2 — Navigation</div>
+      <h2 class="sh-title">What We're Covering</h2>
+    </div>
+    <div class="toc-grid">
+      <a href="#pack-vs-organic" class="toc-link"><span class="toc-num">1</span>Local Pack vs. Local Organic — The Critical Distinction</a>
+      <a href="#gbp" class="toc-link"><span class="toc-num">2</span>Google Business Profile — The Foundation</a>
+      <a href="#sab" class="toc-link"><span class="toc-num">3</span>Service Area Businesses (SABs)</a>
+      <a href="#service-area-pages" class="toc-link"><span class="toc-num">4</span>Service Area Pages That Actually Rank</a>
+      <a href="#location-checklist" class="toc-link"><span class="toc-num">5</span>Location Data &amp; Website Checklist</a>
+      <a href="#schema" class="toc-link"><span class="toc-num">6</span>Local Business Schema Markup</a>
+      <a href="#keywords" class="toc-link"><span class="toc-num">7</span>Hyperlocal Keyword Strategy</a>
+      <a href="#nap-backlinks" class="toc-link"><span class="toc-num">8</span>NAP Consistency &amp; Backlink Profile Review</a>
+      <a href="#reputation" class="toc-link"><span class="toc-num">9</span>Reviews &amp; Reputation Management</a>
+      <a href="#troubleshooting" class="toc-link"><span class="toc-num">10</span>Troubleshooting Local Ranking Issues</a>
+    </div>
+  </div>
+</section>
+
+<!-- 1: LOCAL PACK VS ORGANIC -->
+<section class="sec-white" id="pack-vs-organic">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1</div>
+      <h2 class="sh-title">Local Pack vs. Local Organic — The Critical Distinction</h2>
+      <p class="sh-desc">This is the single most important conceptual split in local SEO — and one of the most common sources of confusion for new teammates. They are two different SERP features, ranked by two different sets of signals.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="compare-card">
+        <div class="compare-header cmp-pack">
+          <h3>📍 Local Pack (Map Pack)</h3>
+          <p>The Google Business Profile / map results</p>
+        </div>
+        <div class="compare-body">
+          <h4>What It Is</h4>
+          <p style="font-size:0.86rem;color:var(--text);line-height:1.6;margin-bottom:12px">The 3-pack of business listings shown on a Google Map at the top of a local SERP. Drives a huge portion of local clicks.</p>
+          <h4>Primary Ranking Signals</h4>
+          <ul>
+            <li>Verified Google Business Profile</li>
+            <li>Physical location within the search area</li>
+            <li>GBP completeness (category, hours, services, photos)</li>
+            <li>Review count, rating, and recency</li>
+            <li>Proximity of searcher to business</li>
+            <li>NAP consistency across the web</li>
+          </ul>
+          <h4>Where Effort Goes</h4>
+          <ul>
+            <li>GBP optimization &amp; ongoing maintenance</li>
+            <li>Review acquisition program</li>
+            <li>NAP (Name, Address, Phone) consistency</li>
+            <li>Structured citations across directories</li>
+          </ul>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-header cmp-org">
+          <h3>🔵 Local Organic</h3>
+          <p>The blue links returned with local intent</p>
+        </div>
+        <div class="compare-body">
+          <h4>What It Is</h4>
+          <p style="font-size:0.86rem;color:var(--text);line-height:1.6;margin-bottom:12px">The standard organic results below the Local Pack that Google determines are relevant to a local search. A broader range of competitors can rank here.</p>
+          <h4>Primary Ranking Signals</h4>
+          <ul>
+            <li>On-page SEO (title, H1, content, internal links)</li>
+            <li>Local authority and topical relevance</li>
+            <li>Service/location page depth and quality</li>
+            <li>Local Business schema markup</li>
+            <li>Backlinks and unstructured citations</li>
+            <li>Site technical health</li>
+          </ul>
+          <h4>Where Effort Goes</h4>
+          <ul>
+            <li>Service area pages with unique content</li>
+            <li>On-page optimization for geo-modified terms</li>
+            <li>Internal linking to location pages</li>
+            <li>Linktations (unstructured citations w/ links)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ Why This Matters in Client Conversations</div>
+      <p>When a client says <em>"we're not ranking,"</em> always clarify: <strong>where</strong>? In the Local Pack, the levers are GBP, location, NAP consistency, and reviews. In Local Organic, the levers are on-page content, schema, internal linking, and authority. Promising "rankings improvements" without specifying which kind sets you up to fail expectations on one or the other. Always separate them in reporting and recommendations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2: GBP -->
+<section class="sec-light" id="gbp">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2</div>
+      <h2 class="sh-title">Google Business Profile — The Foundation</h2>
+      <p class="sh-desc">GBP is identified as the most influential factor for appearing in the Local Pack. For most local services clients, an optimized and actively managed GBP is the highest-leverage local SEO investment you can make.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px">GBP Eligibility — Who Can Have a Listing</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:20px;max-width:720px;line-height:1.7;">Before you touch a profile, confirm the client is actually eligible. Google has clear rules on what qualifies.</p>
+
+    <div class="elig-grid mb32">
+      <div class="elig-box elig-yes">
+        <div class="elig-label">✓ Eligible</div>
+        <ul>
+          <li>Legitimate physical addresses</li>
+          <li>Face-to-face contact with customers</li>
+          <li>ATMs, video and food kiosks, express mail drop boxes</li>
+          <li>Seasonal businesses with year-round signage</li>
+          <li>Independently operated co-located brands each with their own listing (not combined listings/branding)</li>
+          <li>Public-facing departments within businesses, universities, hospitals, and government institutions</li>
+          <li>Public-facing multi-practitioners contactable at published hours</li>
+          <li>Food trucks with permanent locations</li>
+          <li>Some co-working spaces</li>
+          <li>Rental/for sale property offices</li>
+        </ul>
+      </div>
+      <div class="elig-box elig-no">
+        <div class="elig-label">✗ Ineligible</div>
+        <ul>
+          <li>PO boxes, virtual offices, and mailboxes at remote locations</li>
+          <li>No face-to-face contact with customers</li>
+          <li>Rental/for sale units</li>
+          <li>Services/classes/meetings at properties you don't own or officially represent</li>
+          <li>Personal, non-business addresses belonging to employees/family/friends</li>
+          <li>Multiple listings representing brands carried, specialties, services, or support staff</li>
+          <li>Phone numbers that refer users to entities other than the actual business</li>
+          <li>Website URLs that refer users to social media landing pages</li>
+          <li>Separate listings for brands and solo practitioners</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px">GBP Optimization — The Full Lever Set</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:18px;max-width:720px;line-height:1.7;">A fully optimized profile pulls every available lever. From the OBx SEO Wiki — Local SEO playbook.</p>
+
+    <div class="g3 mb32">
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <h3>Detailed Business Description</h3>
+        <p>Write a compelling, informative description that accurately represents the business and naturally includes local keywords. This is one of the most under-utilized fields on most profiles.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏷️</div>
+        <h3>Relevant Business Categories</h3>
+        <p>Choose primary and secondary categories that precisely describe the business and services. The primary category is one of the strongest Local Pack signals — pick the most specific match.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛍️</div>
+        <h3>Products &amp; Services Listed</h3>
+        <p>List products and services to give potential customers a comprehensive view of what's offered. Helps Google match the profile to the right queries.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⭐</div>
+        <h3>Customer Reviews</h3>
+        <p>Encourage happy customers to leave reviews and respond to them promptly to build trust and engagement. Volume, recency, and rating all matter.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📸</div>
+        <h3>High-Quality Photos &amp; Videos</h3>
+        <p>Use professional, visually appealing images of the storefront, products, or services. Upload regularly — interior, exterior, team, and work samples.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📰</div>
+        <h3>Regular Google Posts</h3>
+        <p>Share updates, promotions, or events through Google Posts to keep the profile active and engaging. Signals an actively managed business.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">❓</div>
+        <h3>Google Q&amp;A</h3>
+        <p>Use the Questions &amp; Answers feature to answer common queries directly on the profile, ensuring customers receive accurate, helpful information from the business itself.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔑</div>
+        <h3>Keyword Integration</h3>
+        <p>Incorporate relevant local keywords into the business description and posts where appropriate, aligning with user search behavior — without keyword stuffing.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Performance Monitoring</h3>
+        <p>Regularly track GBP insights to measure clicks, calls, and direction requests, helping optimize engagement strategies over time.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px">Location Data Checklist — What to Gather Before You Start</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:18px">Before marketing a client, brand, or business, gather this information for every location:</p>
+
+    <div class="checklist-grid">
+      <div class="checklist-box">
+        <div class="checklist-header">📋 Business Identity</div>
+        <div class="checklist-body">
+          <ul>
+            <li>Current, real-world business name, address, and phone number for each location</li>
+            <li>Name, address &amp; phone number for each public-facing department (if applicable)</li>
+            <li>Name, address &amp; phone number for each public-facing independent practitioner (if applicable)</li>
+            <li>Hours of operation for each location, department, and practitioner</li>
+            <li>Email addresses, fax numbers, toll-free numbers, and any secondary numbers</li>
+          </ul>
+        </div>
+      </div>
+      <div class="checklist-box">
+        <div class="checklist-header">🔐 GBP Access &amp; Setup</div>
+        <div class="checklist-body">
+          <ul>
+            <li>Google Business Profile (GBP) landing page URLs for all locations, departments, and practitioners</li>
+            <li>Existing or desired GBP categories for each location, department, and practitioner</li>
+            <li>Existing or desired GBP description for each location, department, and practitioner</li>
+            <li>Access to Google Business Profile, Google Search Console, and other relevant platforms</li>
+            <li>Access to each location's highest-quality images</li>
+            <li>List of all relevant social media profiles for the brand and its locations</li>
+            <li>Documentation of any past penalties or suspensions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3: SAB -->
+<section class="sec-white" id="sab">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3</div>
+      <h2 class="sh-title">Service Area Businesses (SABs)</h2>
+      <p class="sh-desc">Some local clients don't have a storefront — they go to the customer. These are configured differently in GBP and require a distinct strategic approach.</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="card">
+        <div class="card-icon">🚐</div>
+        <h3>What Is an SAB?</h3>
+        <p>Service Area Businesses visit clients' locations rather than receiving customers at a storefront. Examples: pool builders, landscapers, contractors, arborists, mobile detailers, in-home physical therapy.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <h3>How GBP Handles SABs</h3>
+        <p>SABs can be configured within their Google Business Profile <strong>without needing a public physical address</strong>. Instead of an address pin, the profile shows service areas (cities, regions, ZIP code ranges).</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>What This Changes Strategically</h3>
+        <p>Without a physical pin, proximity matters differently. SABs lean even harder on category accuracy, reviews, service area page coverage, and on-page signals tying them to each city they serve.</p>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-label">Example: Backyard Oasis</div>
+      <p>Backyard Oasis is a textbook SAB — they go to customer homes to build outdoor living spaces. Their GBP should be configured as a service area business, listing every city/town they realistically service. Their on-site SEO needs dedicated location pages for those same areas, with unique content about projects, neighborhoods, and local context — not duplicated boilerplate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4: SERVICE AREA PAGES -->
+<section class="sec-light" id="service-area-pages">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4</div>
+      <h2 class="sh-title">Service Area Pages That Actually Rank</h2>
+      <p class="sh-desc">To rank for specific states, cities, or neighborhoods, dedicated location pages are essential. But there's a critical quality bar — and most local sites fail it.</p>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ The Duplicate Content Trap</div>
+      <p>The most common mistake: creating 30 "we serve [city]" pages that are identical templates with only the city name swapped. Google detects this and either ignores the pages or flags them as low-value content. <strong>Service area pages must offer unique value and context</strong> about the business's experience in that specific location.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px;margin-top:32px">Two Page Patterns: State-Wide vs. City/Town-Specific</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:18px;max-width:720px;line-height:1.7;">Depending on the client's service footprint, you'll typically build one of two location page hierarchies — or both layered together.</p>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <h3>State-Wide Location Pages</h3>
+        <p style="margin-bottom:14px">For clients servicing entire states or multiple states. These pages capture the broad geo-modified searches and serve as parent pages for city-level children.</p>
+        <div class="example-link-box">
+          <div class="example-link-box-label">Reference Examples</div>
+          <a href="https://www.petinsurance.com/whats-covered/new-york/" target="_blank">petinsurance.com/whats-covered/new-york/</a>
+          <a href="https://www.embracepetinsurance.com/state/pet-insurance-new-york-ny" target="_blank">embracepetinsurance.com/state/pet-insurance-new-york-ny</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>City/Town-Specific Pages</h3>
+        <p style="margin-bottom:14px">For hyperlocal targeting where the client wants to capture searchers in specific cities or neighborhoods. The highest-conversion local pages.</p>
+        <div class="example-link-box">
+          <div class="example-link-box-label">Reference Examples</div>
+          <a href="https://www.onehourheatandair.com/houston/" target="_blank">onehourheatandair.com/houston/</a>
+          <a href="https://www.onehourheatandair.com/houston/areas-we-service/cinco-ranch/" target="_blank">onehourheatandair.com/houston/areas-we-service/cinco-ranch/</a>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px">What a Strong Service Area Page Includes</h3>
+    <div class="g2 mb32">
+      <div class="card">
+        <h3>🏙️ Local Context</h3>
+        <ul class="plain mt16">
+          <li>Specific neighborhoods or sub-areas within the city served</li>
+          <li>Local landmarks, attractions, or notable areas referenced</li>
+          <li>Mention of nearby cities/regions for geographic context</li>
+          <li>Driving directions or location notes</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📸 Real Local Proof</h3>
+        <ul class="plain mt16">
+          <li>Photos of actual projects or work performed in that area</li>
+          <li>Customer testimonials from clients in that specific city</li>
+          <li>Case studies or project highlights tied to the location</li>
+          <li>Local team member mentions if applicable</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🎯 Unique Service Details</h3>
+        <ul class="plain mt16">
+          <li>Service specifics relevant to that area (climate, common requests)</li>
+          <li>How service delivery works for that specific location</li>
+          <li>Lead times, service hours, or scheduling specific to the area</li>
+          <li>Local certifications, licenses, or partnerships if applicable</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🔗 Clear Structure &amp; CTAs</h3>
+        <ul class="plain mt16">
+          <li>Unique title tag and H1 referencing service + location</li>
+          <li>Internal links to related service pages</li>
+          <li>Local schema markup (schema.org/LocalBusiness)</li>
+          <li>Phone + form CTA prominently placed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-label">Quality Over Quantity</div>
+      <p>Five strong, unique service area pages will outperform 25 thin templated ones every time. If the client only genuinely services five areas, build five great pages — don't pad. If they service 25, the question becomes whether you have the content budget to build 25 strong pages. If not, prioritize the highest-opportunity areas first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5: LOCATION CHECKLIST -->
+<section class="sec-white" id="location-checklist">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5</div>
+      <h2 class="sh-title">Location Data &amp; Website Checklist</h2>
+      <p class="sh-desc">A working checklist to use as your audit framework when onboarding a new local client.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Local Website Checklist — Content</h3>
+    <div class="checklist-grid mb32">
+      <div class="checklist-box">
+        <div class="checklist-header">📄 Core Pages</div>
+        <div class="checklist-body">
+          <ul>
+            <li>Basic pages with clear, unique selling propositions and clear CTAs: Home, About, Contact, FAQ, Guarantee/Policy/Disclaimer pages</li>
+            <li>Complete contact info on Contact Page or location landing pages</li>
+            <li>Pages use local business schema markup (schema.org/LocalBusiness)</li>
+            <li>Include accurate hours, maps, and written driving directions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="checklist-box">
+        <div class="checklist-header">📍 Unique Pages For</div>
+        <div class="checklist-body">
+          <ul>
+            <li>Every location of a multi-location business</li>
+            <li>Every key service and product offered</li>
+            <li>Every public-facing practitioner or expert (if applicable)</li>
+            <li>Reviews/testimonials page or reviews embedded in location landing pages</li>
+            <li>Social media, local business profile, and review profile links</li>
+            <li>High-quality, accessible media — compressed photos with alt tags, videos with transcripts</li>
+            <li>Proofs of local community involvement/civic benefit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Local Website Checklist — Technical</h3>
+    <div class="checklist-grid">
+      <div class="checklist-box">
+        <div class="checklist-header">⚙️ Site Architecture</div>
+        <div class="checklist-body">
+          <ul>
+            <li>Usable navigation and strong internal linking structure</li>
+            <li>Mobile-friendliness and fast load speed</li>
+            <li>Secure HTTPS URLs</li>
+            <li>Proper HTTP redirects in place</li>
+            <li>Proper URL canonicalization</li>
+          </ul>
+        </div>
+      </div>
+      <div class="checklist-box">
+        <div class="checklist-header">🏷️ On-Page Standards</div>
+        <div class="checklist-body">
+          <ul>
+            <li>Consistent header tag structure/usage</li>
+            <li>Short, optimized, human-readable URLs</li>
+            <li>Unique title tag on each page, between 50–60 characters</li>
+            <li>Unique meta description for each page, around 160 characters</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6: SCHEMA MARKUP (NEW) -->
+<section class="sec-light" id="schema">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6</div>
+      <h2 class="sh-title">Local Business Schema Markup</h2>
+      <p class="sh-desc">Schema markup is essential for enhancing site visibility in local search results. Local business schema tells search engines about your business details, helping you appear in rich results and the local pack.</p>
+    </div>
+
+    <div class="g4 mb32">
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>Implementation</h3>
+        <p>Add structured data in JSON-LD format to the homepage and relevant location-specific pages.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧾</div>
+        <h3>Key Information</h3>
+        <p>Include essential business info: name, address, phone number, business hours, and service areas.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔎</div>
+        <h3>Search Engine Understanding</h3>
+        <p>Helps search engines deliver more accurate information to users searching with local intent, improving rankings and click-through rates.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✨</div>
+        <h3>Rich Results</h3>
+        <p>Schema markup can trigger rich snippets like star ratings or product availability, which enhance SERP appearance and CTR.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Local Business Schema Example</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:14px;max-width:720px;line-height:1.7;">Example JSON-LD implementation for a local business. Adjust <code style="background:var(--light-gray);padding:1px 6px;border-radius:3px;font-size:0.82rem">@type</code> to match the client (e.g., <code style="background:var(--light-gray);padding:1px 6px;border-radius:3px;font-size:0.82rem">MedicalBusiness</code>, <code style="background:var(--light-gray);padding:1px 6px;border-radius:3px;font-size:0.82rem">HomeAndConstructionBusiness</code>, <code style="background:var(--light-gray);padding:1px 6px;border-radius:3px;font-size:0.82rem">HealthAndBeautyBusiness</code>).</p>
+
+<pre class="code-block"><span class="ck">&lt;script</span> <span class="cs">type</span>=<span class="cv">"application/ld+json"</span><span class="ck">&gt;</span>
+{
+  <span class="cs">"@context"</span>: <span class="cv">"https://schema.org"</span>,
+  <span class="cs">"@type"</span>: <span class="cv">"Restaurant"</span>,
+  <span class="cs">"image"</span>: [
+    <span class="cv">"https://example.com/photos/1x1/photo.jpg"</span>,
+    <span class="cv">"https://example.com/photos/4x3/photo.jpg"</span>,
+    <span class="cv">"https://example.com/photos/16x9/photo.jpg"</span>
+  ],
+  <span class="cs">"name"</span>: <span class="cv">"Dave's Steak House"</span>,
+  <span class="cs">"address"</span>: {
+    <span class="cs">"@type"</span>: <span class="cv">"PostalAddress"</span>,
+    <span class="cs">"streetAddress"</span>: <span class="cv">"148 W 51st St"</span>,
+    <span class="cs">"addressLocality"</span>: <span class="cv">"New York"</span>,
+    <span class="cs">"addressRegion"</span>: <span class="cv">"NY"</span>,
+    <span class="cs">"postalCode"</span>: <span class="cv">"10019"</span>,
+    <span class="cs">"addressCountry"</span>: <span class="cv">"US"</span>
+  },
+  <span class="cs">"geo"</span>: {
+    <span class="cs">"@type"</span>: <span class="cv">"GeoCoordinates"</span>,
+    <span class="cs">"latitude"</span>: 40.761293,
+    <span class="cs">"longitude"</span>: -73.982294
+  },
+  <span class="cs">"url"</span>: <span class="cv">"https://www.example.com/restaurant-locations/manhattan"</span>,
+  <span class="cs">"telephone"</span>: <span class="cv">"+12122459600"</span>,
+  <span class="cs">"servesCuisine"</span>: <span class="cv">"American"</span>,
+  <span class="cs">"priceRange"</span>: <span class="cv">"$$$"</span>,
+  <span class="cs">"openingHoursSpecification"</span>: [
+    {
+      <span class="cs">"@type"</span>: <span class="cv">"OpeningHoursSpecification"</span>,
+      <span class="cs">"dayOfWeek"</span>: [<span class="cv">"Monday"</span>, <span class="cv">"Tuesday"</span>],
+      <span class="cs">"opens"</span>: <span class="cv">"11:30"</span>,
+      <span class="cs">"closes"</span>: <span class="cv">"22:00"</span>
+    }
+  ]
+}
+<span class="ck">&lt;/script&gt;</span></pre>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 Schema Best Practice for Local</div>
+      <p>Whatever the client's NAP shows on their website, GBP, and citations — the schema must <strong style="color:var(--gold)">match exactly</strong>. Inconsistent NAP between the visible site and the structured data is one of the most common quiet-killers of Local Pack visibility. Treat NAP in schema as part of the same consistency discipline covered in Section 8.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7: KEYWORDS -->
+<section class="sec-white" id="keywords">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7</div>
+      <h2 class="sh-title">Hyperlocal Keyword Strategy</h2>
+      <p class="sh-desc">If the client is a local account, location modifiers must be included for the targeted areas the client is trying to generate business for. The hyperlocal name almost always beats the metro name when the client genuinely serves that hyperlocal area.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Where to Embed Local Keywords</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:18px;max-width:720px;line-height:1.7;">Local keywords should show up across the core on-page elements — not just in body content.</p>
+    <ul class="plain mb32" style="max-width:760px">
+      <li><strong>Site metadata:</strong> Incorporate local keywords into title tags, meta descriptions, and H1 tags to increase visibility in local searches</li>
+      <li><strong>Landing pages and service pages:</strong> Create or update pages targeting specific geographic areas or neighborhoods, embedding local keywords naturally</li>
+      <li><strong>Localized content creation:</strong> Develop locally-relevant content like blog posts or guides that address the needs and interests of the community — neighborhood-specific pages or articles about local events that relate to the business</li>
+      <li><strong>User intent:</strong> Ensure content matches the search behavior of local users, addressing questions they might ask and offering solutions to common local challenges</li>
+    </ul>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">The Tomball Rule</h3>
+    <div class="callout green">
+      <div class="callout-label">Real Example</div>
+      <p>If the client is located in <strong>Tomball</strong>, then <em>"tomball pool builders"</em> is a stronger target than <em>"houston pool builders"</em> — despite Tomball being part of the greater Houston area. A Tomball searcher who types "tomball pool builders" has higher intent for a Tomball-based provider. <strong>But:</strong> do not reach for the all-encompassing metro area name if the client does not service those areas. A Tomball-only contractor targeting "houston pool builders" creates a bad user experience and wastes spend on out-of-area clicks.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px;margin-top:32px">Finding Your Local Competition</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:20px;max-width:720px;line-height:1.7;">From the Moz hyperlocal framework — apply this to every market your client serves.</p>
+
+    <table class="tbl">
+      <thead><tr><th>Dimension</th><th>What to Do</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Who</strong></td><td>Determine your main geographic competitors for each market. Complete a manual competitive audit.</td></tr>
+        <tr><td><strong>Where</strong></td><td>Verify that you're targeting the right keywords using hyperlocal keyword research, including local keyword volume. Then, identify where you rank amid competitors for each keyword target in each market.</td></tr>
+        <tr><td><strong>Why</strong></td><td>Analyze why each market competitor outranking you is winning a SERP based on an audit of their total presence. Understand why competitors may be dominating a certain market and which of their tactics are most effective.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 8: NAP CONSISTENCY & BACKLINK PROFILE (NEW) -->
+<section class="sec-light" id="nap-backlinks">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 8</div>
+      <h2 class="sh-title">NAP Consistency &amp; Backlink Profile Review</h2>
+      <p class="sh-desc">Two of the quietest but highest-impact off-site signals in local SEO. NAP consistency tells Google your business is real and verifiable. The backlink profile tells Google your business has earned local authority. Neglect either and the Local Pack stays out of reach.</p>
+    </div>
+
+    <!-- NAP -->
+    <h3 style="font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:8px;margin-top:8px">8.1 — What NAP Consistency Means</h3>
+    <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:20px;max-width:720px;line-height:1.7;"><strong style="color:var(--navy)">NAP = Name, Address, Phone.</strong> Consistency is critical for building trust with search engines. Your client's NAP information should be uniform across <em>every</em> online listing — the website, social profiles, directories, GBP, and schema markup.</p>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 Why NAP Consistency Is a Ranking Signal</div>
+      <p>Google uses NAP matches across the web to verify a business is real, active, and genuinely located where it claims to be. Inconsistencies — even small ones like "Street" vs "St." or two different phone numbers — create doubt at the algorithm level. <strong style="color:var(--gold)">When Google isn't confident the business is real, it pushes the profile down in the Local Pack, regardless of how well-optimized everything else is.</strong></p>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:12px;margin-top:28px">What Inconsistent NAP Actually Looks Like</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:14px;max-width:720px;">Most NAP problems are subtle. Side-by-side example:</p>
+
+    <div class="nap-comp">
+      <div class="nap-box nap-good">
+        <div class="nap-label">✓ Consistent NAP</div>
+        <div class="nap-line">Backyard Oasis Pools &amp; Spas</div>
+        <div class="nap-line">1234 Main Street</div>
+        <div class="nap-line">Tomball, TX 77375</div>
+        <div class="nap-line">(281) 555-0100</div>
+        <div style="font-size:0.78rem;color:var(--text-light);margin-top:12px;line-height:1.55">Used identically on website, GBP, Yelp, Facebook, Yellow Pages, BBB, and schema markup.</div>
+      </div>
+      <div class="nap-box nap-bad">
+        <div class="nap-label">✗ Inconsistent NAP — Examples</div>
+        <div class="nap-line">Backyard Oasis <span class="diff">Pool &amp; Spa</span></div>
+        <div class="nap-line">1234 Main <span class="diff">St.</span></div>
+        <div class="nap-line">Tomball, TX <span class="diff">77735</span></div>
+        <div class="nap-line"><span class="diff">281-555-0100</span></div>
+        <div style="font-size:0.78rem;color:var(--text-light);margin-top:12px;line-height:1.55">Even these small variations — abbreviations, transposed digits, formatting — get flagged as separate entities by Google.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:12px;margin-top:32px">Where NAP Must Match</h3>
+    <div class="g3 mb32">
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Website &amp; Social Media</h3>
+        <p>Ensure NAP information matches exactly across the client's website (header, footer, contact page, location pages), and all social profiles (Facebook, Instagram, LinkedIn, etc.).</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h3>Business Directories</h3>
+        <p>Use tools like Moz Local or BrightLocal to audit and identify inconsistencies across popular directories like Yelp, Yellow Pages, BBB, and industry-specific sites.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>Correcting Discrepancies</h3>
+        <p>Resolve any variations in spelling, formatting, or phone numbers. These confuse search engines and reduce local ranking potential.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:8px;margin-top:8px">8.2 — How to Check NAP Consistency</h3>
+    <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:20px;max-width:720px;line-height:1.7;">A repeatable audit process you can run on any new local account in under 30 minutes.</p>
+
+    <table class="tbl mb32">
+      <thead><tr><th>Step</th><th>What to Do</th><th>Tool / Source</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Establish source of truth</strong></td><td>Get the client's official, current NAP — the exact name, address (with all formatting), and primary phone number they want used everywhere.</td><td>Confirm directly with the client</td></tr>
+        <tr><td><strong>2. Audit the website</strong></td><td>Check the header, footer, contact page, all location pages, and schema markup for matching NAP.</td><td>Manual review + view source for schema</td></tr>
+        <tr><td><strong>3. Audit the GBP</strong></td><td>Verify the Google Business Profile name, address, and phone match the source of truth exactly — including primary and additional phone numbers.</td><td>Google Business Profile dashboard</td></tr>
+        <tr><td><strong>4. Run a citation audit</strong></td><td>Pull a full citation/listing report to identify every directory where the business is listed and flag any mismatches.</td><td>Moz Local or BrightLocal</td></tr>
+        <tr><td><strong>5. Check major directories manually</strong></td><td>At minimum: Yelp, Facebook, Bing Places, Apple Maps, BBB, Yellow Pages, and any industry-specific directories (e.g., Healthgrades for healthcare).</td><td>Manual search</td></tr>
+        <tr><td><strong>6. Document discrepancies</strong></td><td>Build a single tracker listing every inconsistency, the source URL, what's wrong, and the correction needed.</td><td>Spreadsheet or ClickUp task</td></tr>
+        <tr><td><strong>7. Prioritize fixes</strong></td><td>Fix high-authority directories first (Yelp, BBB, Facebook, Bing) — they carry more weight and often get scraped by smaller directories.</td><td>Sequenced cleanup plan</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ Common NAP Pitfalls to Watch For</div>
+      <p><strong>Multiple phone numbers:</strong> A business with a "main line" + "appointment line" + "after-hours line" listed inconsistently across directories will get flagged. Pick one primary and use it everywhere; the others can live on the contact page only. <strong>Suite/unit numbers:</strong> "Suite 200" vs "Ste 200" vs "#200" is a real consistency issue. <strong>Tracking numbers:</strong> CallRail dynamic numbers should NEVER replace the business's real published number on the website or in citations — only inside ad campaigns.</p>
+    </div>
+
+    <!-- BACKLINK PROFILE -->
+    <h3 style="font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:8px;margin-top:40px">8.3 — When to Review a Local Business's Backlink Profile</h3>
+    <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:20px;max-width:720px;line-height:1.7;">Backlink reviews aren't a constant activity for most local accounts — they're triggered. Knowing when to run one is the skill. Use these five triggers as your checklist.</p>
+
+    <div class="g3 mb32">
+      <div class="trigger-card">
+        <div class="trigger-icon">🚀</div>
+        <div class="trigger-title">1. During Onboarding (Baseline)</div>
+        <div class="trigger-desc">Every new local account gets a baseline backlink review in the first 30 days. You need to know what the client already has — referring domains, anchor text patterns, any toxic links — before you can recommend what to build next.</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trigger-icon">📅</div>
+        <div class="trigger-title">2. Quarterly Maintenance</div>
+        <div class="trigger-desc">Re-run the review every quarter for active local accounts. Catch new spammy referring domains early, track gained/lost authority links, and confirm any link-building work has actually landed.</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trigger-icon">📉</div>
+        <div class="trigger-title">3. When Rankings Drop Unexpectedly</div>
+        <div class="trigger-desc">If a client loses Local Organic visibility without a clear algorithmic explanation, check the backlink profile. Lost authority links or a wave of spammy inbound links are real culprits — and both are fixable once identified.</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trigger-icon">🛠️</div>
+        <div class="trigger-title">4. Before Recommending Link Building</div>
+        <div class="trigger-desc">Never recommend a link-building investment without first knowing the current profile. The right play depends on what the client has now — a thin profile needs foundation work; a strong-but-stale profile needs targeted authority links.</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trigger-icon">🆚</div>
+        <div class="trigger-title">5. When Competitors Are Outranking</div>
+        <div class="trigger-desc">When a client says "they're beating us" or you spot a competitor consistently above them in Local Organic, compare backlink profiles. The gap in referring domains often explains the gap in rankings — and points directly to outreach targets.</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trigger-icon">🔄</div>
+        <div class="trigger-title">6. After a Site Migration or Rebrand</div>
+        <div class="trigger-desc">Any URL change, domain change, or major site restructure should trigger a backlink review. Confirm legacy links are still resolving (via redirects), flag any broken inbound links, and protect earned equity from getting lost.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:14px;margin-top:8px">What a Local Backlink Review Actually Looks At</h3>
+    <ul class="plain mb32" style="max-width:780px">
+      <li><strong>Referring domain count and quality</strong> — how many unique sites link to the client, and what's the average DR/DA?</li>
+      <li><strong>Local relevance of referring domains</strong> — local newspapers, chambers of commerce, community blogs carry disproportionate weight for local SEO</li>
+      <li><strong>Anchor text distribution</strong> — natural mix vs over-optimized exact match (a red flag)</li>
+      <li><strong>Toxic or spammy backlinks</strong> — PBNs, link farms, irrelevant foreign sites that may warrant disavow</li>
+      <li><strong>Lost links over time</strong> — referring domains that have dropped recent links and may be worth re-engaging</li>
+      <li><strong>Competitor gap analysis</strong> — domains linking to top 3 competitors but not to the client</li>
+    </ul>
+
+    <!-- LOCAL BACKLINK ACQUISITION -->
+    <h3 style="font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:8px;margin-top:40px">8.4 — Local Backlink Acquisition Strategies</h3>
+    <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:20px;max-width:720px;line-height:1.7;">Building a strong backlink profile is essential for increasing site authority — particularly local links. From the OBx SEO Wiki, here are the proven strategies for local link acquisition.</p>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Partnerships</h3>
+        <p>Partner with local businesses, chambers of commerce, or community organizations to gain backlinks from their websites. Look for non-competing complementary businesses (e.g., a med spa partnering with a fitness studio).</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎗️</div>
+        <h3>Sponsorships</h3>
+        <p>Sponsor local events, charities, or sports teams, which often provide backlinks in return for sponsorship. Many sponsor pages live on high-authority community sites.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <h3>Content Contributions</h3>
+        <p>Contribute guest posts or expert commentary to local news outlets or blogs to earn backlinks while positioning the client as a community expert. Highly valuable for healthcare and professional services.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📒</div>
+        <h3>Local Directories</h3>
+        <p>List the business in reputable local directories that link back to the website. This overlaps with NAP citation work — pick directories with real local relevance, not just any directory that will list you.</p>
+      </div>
+    </div>
+
+    <!-- LINKTATIONS -->
+    <h3 style="font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:8px;margin-top:40px">8.5 — Citations: Where NAP Citations Meet Backlinks</h3>
+    <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:18px;max-width:720px;line-height:1.7;">Listings on formal directories are called "structured citations." When other types of platforms (like online news sites, blogs, best-of lists, etc.) reference a local business's complete or partial contact information, that's called an "unstructured citation." The best unstructured citations include links. We refer to these as "linktations" — and they sit at the intersection of NAP consistency and backlink building.</p>
+
+    <div class="g2">
+      <div class="card">
+        <h3>📰 Topics to Publish About</h3>
+        <ul class="plain mt16">
+          <li>Company USP, products/services, customer guarantees</li>
+          <li>Customer FAQs, company history, staff</li>
+          <li>Civic participation, directions, nearby attractions</li>
+          <li>Company news, accreditations, customer stories</li>
+          <li>Sales/events, loyalty programs, local business allies</li>
+          <li>Green practices</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🔗 Ways to Win Citations</h3>
+        <ul class="plain mt16">
+          <li>Local B2B alliances, trade associations</li>
+          <li>Exceptional content, sponsorships, donations</li>
+          <li>Civic participation, contests, newsworthiness</li>
+          <li>Breaking local news, guest interviews, guest articles</li>
+          <li>Scholarships, HARO, press releases</li>
+          <li>Hosting events, social media campaigns</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout green mt24">
+      <div class="callout-label">The Compounding Effect</div>
+      <p>NAP consistency, structured citations, and earned backlinks all reinforce each other. A well-managed NAP discipline gives every new citation and every new link maximum value. Skip the NAP work and you're building backlinks on top of an unstable foundation — Google still isn't sure who the business is, so the authority signals get discounted.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9: REPUTATION -->
+<section class="sec-white" id="reputation">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 9</div>
+      <h2 class="sh-title">Reviews &amp; Reputation Management</h2>
+      <p class="sh-desc">Reviews are simultaneously a ranking signal, a conversion driver, and a trust mechanism. Negative reviews can significantly impact rankings. For most local services clients, this is one of the highest-ROI areas to focus on.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Core Principles of Review &amp; Reputation Management</h3>
+    <ul class="plain mb32" style="max-width:780px">
+      <li><strong>Encourage reviews:</strong> Ask satisfied customers to leave reviews on Google, Yelp, and other review platforms</li>
+      <li><strong>Respond promptly:</strong> Show customers you value feedback by responding to all reviews — positive or negative — promptly and professionally. This builds trust and engagement.</li>
+      <li><strong>Active monitoring:</strong> Regularly monitor online reviews, addressing any issues raised by customers to maintain a positive online reputation</li>
+      <li><strong>Volume and diversity:</strong> Aim for a steady stream of reviews across different platforms. A high number of diverse, positive reviews strengthens local SEO efforts.</li>
+    </ul>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">What a Strong Reputation Program Includes</h3>
+    <ul class="plain mb32" style="max-width:760px">
+      <li>An active review acquisition program</li>
+      <li>Continuous review monitoring and a fast response strategy</li>
+      <li>Review spam detection and reporting</li>
+      <li>An in-store strategy to catch and resolve complaints 1:1, before they turn into reviews</li>
+      <li>A resolution plan to turn negative reviews into positives</li>
+      <li>Sentiment analysis to identify and combat emerging issues</li>
+      <li>Customer-centric policies</li>
+      <li>Robust staff hiring and training practices</li>
+      <li>Strict adherence to platform and review guidelines</li>
+      <li>To cultivate and maintain good PR</li>
+    </ul>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Handling Negative Reviews</h3>
+    <div class="callout orange">
+      <div class="callout-label">The Real Strategy</div>
+      <p>Businesses can report clearly fraudulent or non-business-related reviews — but Google's removal rate is inconsistent at best. The <strong>most reliable mitigation strategy</strong> is to actively generate positive reviews to improve the overall rating and dilute the impact of negatives. One bad review out of 12 is a problem; one bad review out of 200 is invisible. Volume beats removal effort in almost every case.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10: TROUBLESHOOTING -->
+<section class="sec-light" id="troubleshooting">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 10</div>
+      <h2 class="sh-title">Troubleshooting Local Ranking Issues</h2>
+      <p class="sh-desc">When a client says "we dropped" or "we're not showing up" — work through this evaluation list before recommending changes.</p>
+    </div>
+
+    <ul class="plain" style="max-width:780px">
+      <li>GBP ineligibility, guideline violations, suspensions, and duplicates</li>
+      <li>Reports of new Google bugs or algorithm updates</li>
+      <li>Filters like Possum</li>
+      <li>Technical website errors and penalties</li>
+      <li>Review count, rating, and recency vs. competitors</li>
+      <li>GBP categorization problems and missing fields</li>
+      <li>NAP inconsistencies across the web (especially high-authority directories)</li>
+      <li>Organic signals vs. competitors (PA/DA, on-page SEO, links, unstructured citations)</li>
+      <li>Content quality, publication rate, and expertise</li>
+      <li>Presence of competitive GBP spam</li>
+      <li>Structured citation consistency, accuracy, and spread</li>
+      <li>Backlink profile health (lost authority links, toxic inbound links)</li>
+    </ul>
+
+    <div class="callout gold mt32">
+      <div class="callout-label">Diagnostic Order</div>
+      <p>Work the list top-down. <strong>GBP issues first</strong> (eligibility, suspensions, category problems) — these can wipe out Local Pack visibility entirely and are often quick fixes. <strong>Algorithm/bug reports second</strong> — confirm it's not industry-wide before diagnosing site-specific. <strong>Then NAP and competitive deltas</strong> — review count, on-page strength, citation gaps, backlink profile health. Most ranking issues land in one of those buckets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh"><div class="sh-tag wht">Part 2 — Recap</div><h2 class="sh-title wht">What You Can Now Do</h2><p class="sh-desc wht">After completing Part 2, you should be able to apply these skills immediately on any local SEO account.</p></div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Distinguish Local Pack vs. Local Organic</div><div class="recap-desc">Clearly separate the two SERP features in audits, recommendations, and client conversations — and know which levers move each one.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">Optimize a Google Business Profile End-to-End</div><div class="recap-desc">Evaluate eligibility, choose categories, write descriptions, manage products/services, photos, posts, Q&amp;A, and monitor insights.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Handle SABs &amp; Service Area Pages</div><div class="recap-desc">Configure SABs without a public address and build state-wide and city-specific location pages with genuine local context — not duplicated templates.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Implement Local Business Schema Markup</div><div class="recap-desc">Add JSON-LD schema with accurate name, address, phone, hours, and service areas to trigger rich results and reinforce NAP signals.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Audit &amp; Maintain NAP Consistency</div><div class="recap-desc">Run a repeatable NAP audit across website, GBP, schema, and major directories using Moz Local or BrightLocal — and prioritize fixes by directory authority.</div></div>
+      <div class="recap-item"><div class="recap-num">06</div><div class="recap-title">Know When (and How) to Review the Backlink Profile</div><div class="recap-desc">Trigger reviews at onboarding, quarterly, after ranking drops, before link-building work, when competitors outrank, or after migrations — and recommend acquisition strategies based on what you find.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Up Next in the Series</div>
+    <div class="npc-title">Part 3: Local Paid Considerations</div>
+    <div class="npc-desc">The OBx local campaign structure (Local Geo, National Geo, Near Me), keyword strategy, proactive negative keywords, ad copy patterns, and bidding for small-budget local accounts.</div>
+    <a href="local-services-part3.html" class="npc-btn">Start Part 3 →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Local Services — Part 2 of 5</span>
+    <span>SEO Considerations</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+</body>
+</html>

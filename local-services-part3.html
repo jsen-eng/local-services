@@ -1,0 +1,587 @@
+<!-- local-services-part3.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Local Services — Part 3: Paid Considerations</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p1: #0E7C5C; --p2: #1B4F72; --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 14px rgba(0,0,0,0.28); }
+.brand-main { color: #fff; font-size: 1.35rem; font-weight: 900; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.66rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.38); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(212,85,26,0.22); color: #FBB97A; border: 1px solid rgba(212,85,26,0.3); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+.brand { display: flex; align-items: center; }
+.series-nav { position: sticky; top: 58px; z-index: 200; background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; }
+.snav-label { color: rgba(255,255,255,0.3); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.09); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.82); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p3); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; }
+.sn-1{background:var(--p1);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);} .sn-4{background:var(--p4);} .sn-5{background:var(--p5);}
+.hero { background: var(--navy); padding: 80px 48px 72px; position: relative; }
+.hero-inner { max-width: 1060px; margin: 0 auto; }
+.hero-eyebrow { color: var(--gold); font-size: 0.74rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
+.hero h1 { color: #fff; font-size: 3.1rem; font-weight: 900; line-height: 1.14; margin-bottom: 20px; }
+.hero h1 em { color: var(--p3); font-style: normal; }
+.hero-sub { color: rgba(255,255,255,0.68); font-size: 1.03rem; max-width: 600px; margin-bottom: 38px; line-height: 1.72; }
+.hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); border-radius: 20px; padding: 6px 14px; color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+.hero-pill .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p3) 0%, var(--gold) 50%, var(--blue) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 68px 0; }
+section.sec-white { background: #fff; padding: 68px 0; }
+section.sec-dark { background: var(--navy); padding: 68px 0; }
+.sh { margin-bottom: 38px; }
+.sh-tag { color: var(--p3); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-title { font-size: 1.95rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.92rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card-icon { font-size: 2rem; margin-bottom: 14px; }
+.card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card p { font-size: 0.87rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); font-weight: 700; }
+.callout { border-radius: 10px; padding: 20px 24px; margin: 28px 0; border-left: 4px solid; }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.orange { background: rgba(212,85,26,0.06); border-color: var(--orange); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.green { background: rgba(14,124,92,0.06); border-color: var(--p1); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.green .callout-label { color: var(--p1); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.85); }
+.campaign-card { background: #fff; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.campaign-header { padding: 18px 22px; color: #fff; display: flex; align-items: center; gap: 12px; }
+.camp-1 { background: var(--p3); } .camp-2 { background: var(--slate); } .camp-3 { background: var(--navy); }
+.campaign-header h3 { font-size: 1.05rem; font-weight: 800; flex: 1; }
+.priority-badge { font-size: 0.66rem; font-weight: 800; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
+.campaign-body { padding: 22px; }
+.campaign-body h4 { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--p3); margin: 14px 0 6px; }
+.campaign-body h4:first-child { margin-top: 0; }
+.campaign-body p { font-size: 0.85rem; color: var(--text); line-height: 1.6; margin-bottom: 6px; }
+.campaign-body code { background: var(--light-gray); padding: 2px 8px; border-radius: 4px; font-size: 0.82rem; color: var(--navy); font-weight: 600; }
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+.toc-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.toc-link { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: var(--text); font-size: 0.85rem; font-weight: 600; }
+.toc-link:hover { background: var(--navy); color: #fff; }
+.toc-num { width: 30px; height: 30px; background: var(--p3); color: #fff; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.87rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p3); }
+.scenario-box { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); border-radius: 12px; padding: 28px; color: #fff; margin-bottom: 32px; }
+.scenario-label { color: var(--gold); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+.scenario-title { color: #fff; font-size: 1.15rem; font-weight: 800; margin-bottom: 12px; }
+.scenario-text { color: rgba(255,255,255,0.82); font-size: 0.92rem; line-height: 1.7; margin-bottom: 18px; }
+.scenario-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.scenario-item { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; }
+.scenario-item-label { color: var(--gold); font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5px; }
+.scenario-item-text { color: rgba(255,255,255,0.85); font-size: 0.81rem; line-height: 1.5; }
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;} .mb32{margin-bottom:32px;}
+.next-part-cta { background: var(--navy-dark); padding: 56px 48px; text-align: center; }
+.npc-inner { max-width: 580px; margin: 0 auto; }
+.npc-label { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title { color: #fff; font-size: 1.55rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc { color: rgba(255,255,255,0.52); font-size: 0.88rem; margin-bottom: 26px; line-height: 1.68; }
+.npc-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--p4); color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; }
+.footer { background: #0D1C2B; padding: 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-meta { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.74rem; }
+[id]::before { content: ''; display: block; height: 76px; margin-top: -76px; pointer-events: none; }
+@media (max-width: 900px) {
+  .g2,.g3,.g4,.scenario-grid { grid-template-columns: 1fr; }
+  .toc-grid,.recap-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.1rem; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">
+    <span class="brand-main">Outer<em>Box</em></span>
+    <span class="brand-school">B·SCHOOL</span>
+  </div>
+  <span class="nav-badge">Part 3 of 5 · Local Services</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="local-services-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="local-services-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Considerations</a>
+  <a href="local-services-part3.html" class="snav-link active"><span class="snav-num sn-3">3</span>Paid Considerations</a>
+  <a href="local-services-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Email Considerations</a>
+  <a href="local-services-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Communicating Strategy</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">B·School Training Series — Local Services</div>
+    <h1>Local <em>Paid</em><br>Considerations</h1>
+    <p class="hero-sub">The OBx local campaign structure, keyword strategy, proactive negative keywords, ad copy that converts, location targeting, and the bidding choices that protect small budgets from waste.</p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span>Part 3 of 5</span>
+      <span class="hero-pill"><span class="dot"></span>~55 min</span>
+    </div>
+  </div>
+</section>
+<div class="accent-bar"></div>
+
+<!-- INTRO -->
+<section class="sec-white">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">The Local Paid Goal</div>
+      <h2 class="sh-title">Be Where Intention Meets Opportunity</h2>
+      <p class="sh-desc">Every choice in a local paid program — campaign structure, keyword pattern, location targeting, ad copy — has one job: send high-intent traffic to the client's site at the moment a real local buyer is searching. The reason this matters more in local than in eCommerce is budget reality.</p>
+    </div>
+
+    <div class="g3 mt32">
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <h3>Benefits of Local Paid</h3>
+        <p>Enhanced visibility and relevance to local audiences. Attraction of new customers through location-based searches. Increased offline conversions by driving foot traffic to physical stores. Brand recognition and trust within the target market.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>What Defines Local Paid</h3>
+        <p>A digital marketing strategy using location targeting and keyword modifiers to reach an audience within specific geographic areas. The location is the intent — not a filter applied after the fact.</p>
+      </div>
+      <div class="card navy">
+        <div class="card-icon">🎯</div>
+        <h3>Our Goal Per Account</h3>
+        <p>Our paid media strategy is personalized for each business we serve. No template campaigns. Every account gets a structure tuned to its actual service area, services, and budget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="sec-light" id="toc">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Part 3 — Navigation</div>
+      <h2 class="sh-title">What We're Covering</h2>
+    </div>
+    <div class="toc-grid">
+      <a href="#campaign-structure" class="toc-link"><span class="toc-num">1</span>The Three-Campaign Local Structure</a>
+      <a href="#scenario" class="toc-link"><span class="toc-num">2</span>"Be Where Intention Meets Opportunity" — Scenario</a>
+      <a href="#keywords" class="toc-link"><span class="toc-num">3</span>Keyword Strategy by Campaign Type</a>
+      <a href="#negatives" class="toc-link"><span class="toc-num">4</span>Negative Keywords — Proactive Discipline</a>
+      <a href="#ad-copy" class="toc-link"><span class="toc-num">5</span>Ad Copy &amp; Extensions</a>
+      <a href="#location-targeting" class="toc-link"><span class="toc-num">6</span>Location Targeting &amp; Audience Segmentation</a>
+      <a href="#mobile-channels" class="toc-link"><span class="toc-num">7</span>Mobile, Bidding &amp; Call Tracking</a>
+      <a href="#testing" class="toc-link"><span class="toc-num">8</span>Testing &amp; Continuous Optimization</a>
+      <a href="#mistakes" class="toc-link"><span class="toc-num">9</span>Common Mistakes to Avoid</a>
+      <a href="#recap" class="toc-link"><span class="toc-num">10</span>Recap</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN STRUCTURE -->
+<section class="sec-white" id="campaign-structure">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1</div>
+      <h2 class="sh-title">The Three-Campaign Local Structure</h2>
+      <p class="sh-desc">The OBx local paid framework is built on three parallel campaigns. Each captures a different search behavior. Together they make sure the client shows up no matter how the buyer types their query.</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="campaign-card">
+        <div class="campaign-header camp-1">
+          <h3>Local Geo Modified</h3>
+          <span class="priority-badge">Priority</span>
+        </div>
+        <div class="campaign-body">
+          <h4>Location Targeting</h4>
+          <p>Specific cities or towns client services (e.g., Lawn Mowing Houston, Lawn Mowing Cypress).</p>
+          <h4>Why It's Priority</h4>
+          <p>Priority campaign due to high intent — allocate most of the budget here.</p>
+          <h4>Example Keyword</h4>
+          <p><code>lawn mowing houston</code></p>
+        </div>
+      </div>
+      <div class="campaign-card">
+        <div class="campaign-header camp-2">
+          <h3>National Geo Modified</h3>
+          <span class="priority-badge">Captures Off-Area Intent</span>
+        </div>
+        <div class="campaign-body">
+          <h4>Structure</h4>
+          <p>Keywords, Ad Groups and Ads are an exact duplicate of "Local Geo Modified" campaign.</p>
+          <h4>Difference</h4>
+          <p>Location targeting set to entire United States and excludes the cities or towns that the "Local Geo Modified" campaign is targeting.</p>
+          <h4>Example Keyword</h4>
+          <p><code>lawn mowing houston</code> (shown to a searcher in Dallas)</p>
+        </div>
+      </div>
+      <div class="campaign-card">
+        <div class="campaign-header camp-3">
+          <h3>Near Me</h3>
+          <span class="priority-badge">Local Intent</span>
+        </div>
+        <div class="campaign-body">
+          <h4>Keyword Pattern</h4>
+          <p>Leverage "Near Me" keyword modifier instead of city, town or state (e.g., "Lawn Mowing Near Me").</p>
+          <h4>Location Targeting</h4>
+          <p>Specific cities or towns client services (same as "Local Geo Modified" campaign).</p>
+          <h4>Example Keyword</h4>
+          <p><code>lawn mowing near me</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 Why Three Campaigns, Not One</div>
+      <p>Each campaign has a different ad and a different bidding logic. The <strong style="color:var(--gold)">Local Geo Modified</strong> is where most spend lives — these are buyers actively searching with location intent. The <strong style="color:var(--gold)">National Geo Modified</strong> catches the out-of-area searcher (a parent in Dallas looking for a service for their kid in Houston) — different bid context, smaller spend. The <strong style="color:var(--gold)">Near Me</strong> campaign catches the device-location-driven searcher who hasn't typed a city — same target geography as Local Geo, but a different keyword. Lumping them into one campaign would muddy the data and waste budget.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIO -->
+<section class="sec-light" id="scenario">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2</div>
+      <h2 class="sh-title">"Be Where Intention Meets Opportunity"</h2>
+      <p class="sh-desc">Here's the real-world scenario the three-campaign structure is built to capture. Pulled directly from the OBx Local Paid Media playbook.</p>
+    </div>
+
+    <div class="scenario-box">
+      <div class="scenario-label">📍 The Scenario</div>
+      <div class="scenario-title">Certified Audiologist Port Jefferson — Capturing Every Real Buyer</div>
+      <div class="scenario-text">Consider scenario: grandmother in Trenton searching for her grandson who lives in Port Jefferson — we would want to show for the search coming out of Trenton because her intent is an Audiologist in Port Jefferson.</div>
+      <div class="scenario-grid">
+        <div class="scenario-item">
+          <div class="scenario-item-label">Local Geo Modified</div>
+          <div class="scenario-item-text">Certified Audiologist Port Jefferson<br><em style="opacity:0.7">Catches Long Island searchers</em></div>
+        </div>
+        <div class="scenario-item">
+          <div class="scenario-item-label">National Geo Modified</div>
+          <div class="scenario-item-text">Certified Audiologist Port Jefferson<br><em style="opacity:0.7">Catches the Trenton grandma</em></div>
+        </div>
+        <div class="scenario-item">
+          <div class="scenario-item-label">Near Me</div>
+          <div class="scenario-item-text">Certified Audiologist Near Me<br><em style="opacity:0.7">Catches device-location intent</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-label">The Lesson</div>
+      <p>A traditional "just target Long Island" structure would miss the Trenton grandma entirely — and she's the buyer making the appointment. By layering National Geo Modified on top of Local Geo, you capture intent that originates outside your target geography but is <em>for</em> your target geography. This is the kind of nuance that separates a great local paid program from a generic one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KEYWORDS -->
+<section class="sec-white" id="keywords">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3</div>
+      <h2 class="sh-title">Keyword Strategy by Campaign Type</h2>
+      <p class="sh-desc">Keyword construction is simple once the campaign structure is set. The pattern is consistent across campaigns — just swap the modifier.</p>
+    </div>
+
+    <table class="tbl mb32">
+      <thead><tr><th>Campaign</th><th>Keyword Pattern</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Local Geo Modified</strong></td><td>Product/service keyword + location modifier</td><td>"lawn mowing houston"</td></tr>
+        <tr><td><strong>National Geo Modified</strong></td><td>Same keywords as Local Geo (duplicate ad group structure)</td><td>"lawn mowing houston"</td></tr>
+        <tr><td><strong>Near Me</strong></td><td>Product/service keyword + "Near Me" modifier</td><td>"lawn mowing near me"</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ ZIP Code Targeting — A Note</div>
+      <p>We have not seen as great results from targeting zip codes. Stick with cities, towns, and regions for both keyword construction and location targeting. ZIP-level targeting tends to be too narrow and can suppress impression volume to the point of starving the campaign.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEGATIVES -->
+<section class="sec-light" id="negatives">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4</div>
+      <h2 class="sh-title">Negative Keywords — Proactive Discipline</h2>
+      <p class="sh-desc">For local accounts on small budgets, negative keywords are not a maintenance task — they are an upfront discipline. Build them before you go live, not after you've burned budget on the wrong traffic.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <h3>🚫 Campaign Level — Exclude Irrelevant Geographies</h3>
+        <ul class="plain mt16">
+          <li>Exclude irrelevant states or cities at the campaign level</li>
+          <li>States: include fully spelled out (Texas) + abbreviation (TX)</li>
+          <li>Pro tip: get this list from Google or ChatGPT to make sure it's complete</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🎯 Ad Group Level — Prevent Internal Overlap</h3>
+        <ul class="plain mt16">
+          <li>Prevent overlap by excluding locations targeted in other ad groups</li>
+          <li>Example: if "Audiologist Port Jefferson" is in one ad group, negate "Port Jefferson" in the others to avoid self-competition</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 Why This Matters at $4K/Month</div>
+      <p>A campaign without aggressive negative keywords on a small budget will absolutely burn through that budget on traffic from states you don't service, neighboring cities outside the client's reach, and overlap across ad groups within your own account. Spending one hour building a complete negative list at launch saves weeks of cleanup later — and protects the budget that pays the client's leads.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AD COPY -->
+<section class="sec-white" id="ad-copy">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5</div>
+      <h2 class="sh-title">Ad Copy &amp; Extensions</h2>
+      <p class="sh-desc">Ad copy for local follows a tight pattern. Pin the service. Pin the location. Show local credibility. Use extensions to make the ad bigger and more functional.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Ad Copy Best Practices</h3>
+    <ul class="plain mb32" style="max-width:780px">
+      <li>Highlight unique selling points and competitive advantages</li>
+      <li>Headline 1: Service or product focus, pinned to position 1. For single keyword ad groups, this should be the ad group name.</li>
+      <li>Headline 2: Location-based messaging (e.g., "Proudly Serving Houston"), pinned to position 2</li>
+      <li>Use Action-Oriented CTAs that encourage direct action (e.g., "Call Now")</li>
+      <li>Avoid excessive use of CTAs to avoid repetition in ad text. Recommend use in 1 headline and 1 description max.</li>
+    </ul>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ For Near Me Ads</div>
+      <p>Remove "Near Me" from the ad text and utilize target market location client services. The keyword is "near me" but the ad should still display the actual city or service area. "Near Me" in the headline reads awkwardly to a user — they want to see the real location of the business.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px;margin-top:32px">Ad Extensions to Use</h3>
+    <div class="g4">
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>Location</h3>
+        <p>Display address for store (Business Profile) — pulls from the linked GBP.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📞</div>
+        <h3>Call</h3>
+        <p>Call Extensions — utilize CallRail Tracking number so calls are attributed to paid.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <h3>Sitelink</h3>
+        <p>Promote specific pages like "Special Offers," "Areas Serviced," or "Contact Us."</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏷️</div>
+        <h3>Structured Snippets</h3>
+        <p>Highlight services or product categories.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION TARGETING -->
+<section class="sec-light" id="location-targeting">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6</div>
+      <h2 class="sh-title">Location Targeting &amp; Audience Segmentation</h2>
+      <p class="sh-desc">Location targeting is where the campaign structure meets the real world. Get this wrong and the entire program suffers — get it right and the rest is fine-tuning.</p>
+    </div>
+
+    <table class="tbl mb32">
+      <thead><tr><th>Campaign</th><th>Location Targeting</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Local Geo Modified</strong></td><td>Specific cities, towns, or regions</td></tr>
+        <tr><td><strong>National Geo Modified</strong></td><td>USA &amp; exclude specific cities, towns or regions</td></tr>
+        <tr><td><strong>Near Me</strong></td><td>Specific cities, towns, or regions</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Audience Segmentation</h3>
+    <ul class="plain mb32" style="max-width:780px">
+      <li>Use Google Ads Audience Insights for demographic targeting</li>
+      <li>Leverage in-market audiences and customer match for tailored ads</li>
+    </ul>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ Audience Layering Warning</div>
+      <p>Consider how targeted this will make our ads as this could result in Low Search Volume if these are layered on top of the Local Location Targeting Structure. On small local budgets, layering audience segments on top of already-narrow geo targeting frequently produces "low search volume" alerts and starves the campaign. Use audience segmentation thoughtfully — usually as a bid modifier or for retargeting, not as a hard layer on top of geo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE / BIDDING / CALL -->
+<section class="sec-white" id="mobile-channels">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7</div>
+      <h2 class="sh-title">Mobile, Bidding &amp; Call Tracking</h2>
+      <p class="sh-desc">Three operational areas that are easy to overlook but consistently move local performance.</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Mobile Optimization</h3>
+        <ul class="plain mt16">
+          <li>Ensure mobile-responsive landing pages for fast load times and seamless user experience</li>
+          <li>Use click-to-call buttons to facilitate conversions directly from ads</li>
+          <li>Ensure use of correct PPC CallRail tracking numbers</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">💵</div>
+        <h3>Bidding Strategy</h3>
+        <ul class="plain mt16">
+          <li>Manual CPC Bidding provides the most control over bids and is a great starting point for a new program until data has time to collect</li>
+          <li>Use Maximize Conversions or Target ROAS to automate bids efficiently — once you have conversion data</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">📞</div>
+        <h3>Call Tracking Integration</h3>
+        <ul class="plain mt16">
+          <li>If client has CallRail, utilize appropriately assigned CallRail tracking numbers (i.e. Google PPC and Microsoft/Bing PPC numbers)</li>
+          <li>If client does not have CallRail, utilize their business phone number</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-label">Cross-Channel Synergy</div>
+      <p>Integrate with social media platforms like Facebook Ads to reach local audiences. Leverage Yelp, Local Service Ads, and Google Business Profiles to enhance visibility across platforms. Local Services Ads (LSAs) in particular are worth evaluating for service-area trades — they show above standard Search results and operate on a pay-per-lead model rather than pay-per-click.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTING -->
+<section class="sec-light" id="testing">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 8</div>
+      <h2 class="sh-title">Testing &amp; Continuous Optimization</h2>
+      <p class="sh-desc">Local paid is never "set it and forget it." But it's also not the place for huge experimental swings on tight budgets. Test small, measure, and move.</p>
+    </div>
+
+    <div class="g4 mb32">
+      <div class="card">
+        <h3>🎯 Differentiation</h3>
+        <p>Emphasize local presence and unique service offerings.</p>
+      </div>
+      <div class="card">
+        <h3>📝 Ad Copy Testing</h3>
+        <p>Experiment with local messaging and CTAs to improve engagement.</p>
+      </div>
+      <div class="card">
+        <h3>📄 Landing Page Testing</h3>
+        <p>Optimize pages for local relevance and mobile performance.</p>
+      </div>
+      <div class="card">
+        <h3>📊 Continuous Optimization</h3>
+        <p>Monitor performance routinely and adjust bids, keywords, or targeting based on results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISTAKES -->
+<section class="sec-white" id="mistakes">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 9</div>
+      <h2 class="sh-title">Common Mistakes to Avoid</h2>
+      <p class="sh-desc">The specific paid-side errors that show up most often in new-teammate accounts.</p>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>The Mistake</th><th>What to Do Instead</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Running a single national campaign with city names in keywords</strong></td><td>Use the three-campaign structure. Local Geo for in-area, National Geo for out-of-area intent for in-area locations, Near Me for device-driven local.</td></tr>
+        <tr><td><strong>Skipping campaign-level negative keyword work at launch</strong></td><td>Build a complete state/region negative list before the campaign goes live. Use Google or ChatGPT to generate the full state list with abbreviations.</td></tr>
+        <tr><td><strong>Targeting ZIP codes for granular control</strong></td><td>Stick with cities, towns, and regions. ZIP-level targeting suppresses volume to the point of starving the campaign.</td></tr>
+        <tr><td><strong>Using "Near Me" in actual ad copy</strong></td><td>The keyword can be "near me" but the ad copy should show the real service location. Pin the city name in Headline 2.</td></tr>
+        <tr><td><strong>Layering tight audience segments on top of tight geo targeting</strong></td><td>On small budgets, audience layering causes "low search volume" issues. Use audiences as bid modifiers, not hard filters.</td></tr>
+        <tr><td><strong>Forgetting to swap to the correct CallRail tracking number per channel</strong></td><td>Google PPC and Microsoft/Bing PPC should each have their own CallRail number for clean attribution.</td></tr>
+        <tr><td><strong>Going straight to Smart Bidding on a brand-new account with no data</strong></td><td>Start with Manual CPC until you have meaningful conversion data, then transition to Maximize Conversions or Target ROAS.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh"><div class="sh-tag wht">Part 3 — Recap</div><h2 class="sh-title wht">What You Can Now Do</h2><p class="sh-desc wht">After completing Part 3, you should be able to build and manage a local paid program from scratch.</p></div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Build the Three-Campaign Structure</div><div class="recap-desc">Stand up Local Geo, National Geo, and Near Me campaigns with the right keyword pattern, location targeting, and budget allocation for each.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">Capture Out-of-Area Intent</div><div class="recap-desc">Understand the Trenton-grandma scenario and use National Geo Modified to capture buyers searching for a location they don't live in.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Launch with Disciplined Negatives</div><div class="recap-desc">Build complete state-level and overlap-prevention negative keyword lists before the campaign launches — not after the spend leaks.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Write Local-First Ad Copy</div><div class="recap-desc">Pin service to Headline 1, location to Headline 2, use action-oriented CTAs sparingly, and pair every campaign with the right extensions.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Set Targeting &amp; Bidding Correctly</div><div class="recap-desc">Use cities/towns over ZIP codes, layer audiences cautiously, start with Manual CPC, and integrate CallRail tracking from day one.</div></div>
+      <div class="recap-item"><div class="recap-num">06</div><div class="recap-title">Avoid the Top Paid Mistakes</div><div class="recap-desc">Skip the broad-national-campaign trap, the missing-negatives trap, the audience-overlayer trap, and the Smart-Bidding-too-early trap.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Up Next in the Series</div>
+    <div class="npc-title">Part 4: Email Considerations</div>
+    <div class="npc-desc">When email earns budget on a local account, what kinds of programs work for service businesses, list-building tactics for local clients, and the compliance considerations for healthcare and legal sender programs.</div>
+    <a href="local-services-part4.html" class="npc-btn">Start Part 4 →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Local Services — Part 3 of 5</span>
+    <span>Paid Considerations</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!-- local-services-part1.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Local Services — Part 1: Foundations</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p1: #0E7C5C; --p2: #1B4F72; --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 14px rgba(0,0,0,0.28); }
+.brand { display: flex; align-items: center; }
+.brand-main { color: #fff; font-size: 1.35rem; font-weight: 900; letter-spacing: -0.5px; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.66rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.38); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(14,124,92,0.22); color: #6FCCA8; border: 1px solid rgba(14,124,92,0.3); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+.series-nav { position: sticky; top: 58px; z-index: 200; background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; }
+.snav-label { color: rgba(255,255,255,0.3); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.09); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.82); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p1); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.sn-1 { background: var(--p1); } .sn-2 { background: var(--p2); } .sn-3 { background: var(--p3); } .sn-4 { background: var(--p4); } .sn-5 { background: var(--p5); }
+.hero { background: var(--navy); padding: 80px 48px 72px; position: relative; overflow: hidden; }
+.hero-blob { position: absolute; border-radius: 50%; pointer-events: none; }
+.hb1 { top: -80px; right: -80px; width: 440px; height: 440px; background: rgba(255,255,255,0.025); }
+.hb2 { bottom: -100px; right: 12%; width: 280px; height: 280px; background: rgba(14,124,92,0.06); }
+.hero-sq { position: absolute; pointer-events: none; }
+.hs1 { top: 44px; right: 64px; width: 22px; height: 22px; background: var(--gold); opacity: 0.7; }
+.hs2 { top: 74px; right: 42px; width: 14px; height: 14px; background: var(--p1); opacity: 0.55; }
+.hs3 { top: 58px; right: 94px; width: 11px; height: 11px; background: var(--orange); opacity: 0.6; }
+.hero-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow { color: var(--gold); font-size: 0.74rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
+.hero h1 { color: #fff; font-size: 3.1rem; font-weight: 900; line-height: 1.14; margin-bottom: 20px; }
+.hero h1 em { color: var(--p1); font-style: normal; }
+.hero-sub { color: rgba(255,255,255,0.68); font-size: 1.03rem; max-width: 580px; margin-bottom: 38px; line-height: 1.72; }
+.hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); border-radius: 20px; padding: 6px 14px; color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+.hero-pill .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p1) 0%, var(--gold) 50%, var(--blue) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 68px 0; }
+section.sec-white { background: #fff; padding: 68px 0; }
+section.sec-dark { background: var(--navy); padding: 68px 0; }
+.sh { margin-bottom: 38px; }
+.sh-tag { color: var(--p1); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-title { font-size: 1.95rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.92rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: box-shadow 0.15s, transform 0.15s; }
+.card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card-icon { font-size: 2rem; margin-bottom: 14px; }
+.card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card p { font-size: 0.87rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.step-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; display: flex; gap: 16px; align-items: flex-start; }
+.step-num { width: 38px; height: 38px; background: var(--p1); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.88rem; flex-shrink: 0; }
+.step-content h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.step-content p { font-size: 0.84rem; color: var(--text-light); line-height: 1.6; }
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); font-weight: 700; }
+.chk { color: var(--success); font-weight: 700; }
+.xmark { color: var(--error); font-weight: 700; }
+.callout { border-radius: 10px; padding: 20px 24px; margin: 28px 0; border-left: 4px solid; }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.orange { background: rgba(212,85,26,0.06); border-color: var(--orange); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.green { background: rgba(14,124,92,0.06); border-color: var(--p1); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.green .callout-label { color: var(--p1); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.85); }
+.client-card { border-radius: 12px; overflow: hidden; }
+.client-header { padding: 20px; text-align: center; }
+.client-header h3 { color: #fff; font-size: 1.05rem; font-weight: 800; margin-bottom: 4px; }
+.client-header p { color: rgba(255,255,255,0.72); font-size: 0.79rem; }
+.ch-b2c { background: var(--navy); } .ch-b2b { background: var(--slate); } .ch-hyb { background: var(--navy-dark); }
+.client-body { padding: 20px; background: #fff; border: 1px solid var(--border); border-top: none; }
+.client-section { margin-bottom: 16px; }
+.client-section:last-child { margin-bottom: 0; }
+.client-section h4 { font-size: 0.69rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--p1); margin-bottom: 8px; }
+.client-section ul { list-style: none; padding: 0; }
+.client-section li { font-size: 0.83rem; color: var(--text); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+.client-section li:last-child { border-bottom: none; }
+.client-section li::before { content: '▸'; color: var(--slate); }
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+.toc-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.toc-link { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: var(--text); font-size: 0.85rem; font-weight: 600; transition: all 0.15s; }
+.toc-link:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+.toc-num { width: 30px; height: 30px; background: var(--p1); color: #fff; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+.tier-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px; border-top: 4px solid var(--p1); }
+.tier-label { font-size: 0.7rem; font-weight: 800; color: var(--p1); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+.tier-name { font-weight: 800; color: var(--navy); font-size: 1.05rem; margin-bottom: 4px; }
+.tier-budget { color: var(--text-light); font-size: 0.85rem; margin-bottom: 12px; }
+.tier-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.ttag { background: var(--light-gray); color: var(--slate); padding: 3px 9px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+.mistake-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.mbox { border-radius: 10px; padding: 18px 20px; border: 1px solid; }
+.mbox.do { background: rgba(39,174,96,0.05); border-color: rgba(39,174,96,0.2); }
+.mbox.dont { background: rgba(231,76,60,0.05); border-color: rgba(231,76,60,0.2); }
+.mbox-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.mbox.do .mbox-label { color: var(--success); }
+.mbox.dont .mbox-label { color: var(--error); }
+.mbox p { font-size: 0.84rem; color: var(--text); line-height: 1.6; }
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.87rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p1); flex-shrink: 0; }
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;}
+.next-part-cta { background: var(--navy-dark); padding: 56px 48px; text-align: center; }
+.npc-inner { max-width: 580px; margin: 0 auto; }
+.npc-label { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title { color: #fff; font-size: 1.55rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc { color: rgba(255,255,255,0.52); font-size: 0.88rem; margin-bottom: 26px; line-height: 1.68; }
+.npc-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--p2); color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; }
+.footer { background: #0D1C2B; padding: 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-meta { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.74rem; }
+[id]::before { content: ''; display: block; height: 76px; margin-top: -76px; pointer-events: none; }
+@media (max-width: 900px) {
+  .g2,.g3,.g4 { grid-template-columns: 1fr; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.1rem; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+  .mistake-pair { grid-template-columns: 1fr; }
+  .recap-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">
+    <span class="brand-main">Outer<em>Box</em></span>
+    <span class="brand-school">B·SCHOOL</span>
+  </div>
+  <span class="nav-badge">Part 1 of 5 · Local Services</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="local-services-part1.html" class="snav-link active"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="local-services-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Considerations</a>
+  <a href="local-services-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>Paid Considerations</a>
+  <a href="local-services-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Email Considerations</a>
+  <a href="local-services-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Communicating Strategy</a>
+</div>
+
+<section class="hero">
+  <div class="hero-blob hb1"></div>
+  <div class="hero-blob hb2"></div>
+  <div class="hero-sq hs1"></div>
+  <div class="hero-sq hs2"></div>
+  <div class="hero-sq hs3"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">B·School Training Series — Local Services</div>
+    <h1>Local Services<br><em>Foundations</em></h1>
+    <p class="hero-sub">Everything you need to work confidently with local service clients — how local search actually behaves, who these businesses are, and the mindset that separates effective local strategy from generic SEO and PPC.</p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span>Part 1 of 5 — Foundational Level</span>
+      <span class="hero-pill"><span class="dot"></span>~45 min</span>
+      <span class="hero-pill"><span class="dot"></span>For new OBx teammates</span>
+    </div>
+  </div>
+</section>
+<div class="accent-bar"></div>
+
+<!-- MINDSET RESET -->
+<section class="sec-white" id="mindset">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Before We Start</div>
+      <h2 class="sh-title">The Mindset Reset</h2>
+      <p class="sh-desc">The single most important shift to make before you touch a local services account.</p>
+    </div>
+    <div class="callout navy">
+      <div class="callout-label">💡 Core Principle</div>
+      <p><strong style="color:var(--gold)">Local SEO and Local Paid are not just "regular SEO and PPC with a city name slapped on."</strong> They are fundamentally different from national or eCommerce work because the user's location <em style="color:var(--gold)">is the intent</em>. When someone searches "facial plastic surgeon near me" or "pool builder Tomball," the geography is not a filter — it's the core of what they need. The most common hang-up for people new to this vertical is defaulting to high-level optimization (technical SEO, brand campaigns, broad keyword targeting) and missing the actual way users search for local businesses: <strong style="color:var(--gold)">business type + location.</strong></p>
+    </div>
+
+    <div class="g3 mt32">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>What You <span style="color:var(--success)">Do</span> Need</h3>
+        <ul class="plain mt16">
+          <li>How users search for local services (intent patterns)</li>
+          <li>The difference between Local Pack and Local Organic</li>
+          <li>Google Business Profile fundamentals and eligibility</li>
+          <li>The right campaign structure for Local Paid</li>
+          <li>Why location modifiers beat broad keywords</li>
+          <li>How to read budgets and tier constraints quickly</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚫</div>
+        <h3>What You <span style="color:var(--error)">Don't</span> Need</h3>
+        <ul class="plain mt16">
+          <li>Deep expertise in any specific service trade</li>
+          <li>A medical or legal degree (for healthcare/legal clients)</li>
+          <li>National keyword strategy playbooks</li>
+          <li>Enterprise-level paid budgets to make impact</li>
+          <li>To talk to clients about HIPAA-protected lead data</li>
+          <li>An eCommerce mindset (this is not online retail)</li>
+        </ul>
+      </div>
+      <div class="card navy">
+        <div class="card-icon">🔑</div>
+        <h3>Your Competitive Edge</h3>
+        <p>Most local businesses have small marketing teams, limited time, and inconsistent agency experiences. They want a partner who understands how their <em style="color:var(--gold)">specific local market</em> behaves. Speaking the language of local search — Local Pack, GBP, service area pages, geo-modified campaigns — instantly elevates you above generalists who treat every account the same.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;padding-top:40px;border-top:1px solid var(--border);">
+      <div style="margin-bottom:24px;">
+        <div class="sh-tag">Also Part of the Mindset Reset</div>
+        <h3 style="font-size:1.55rem;font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:12px;">Local Services Is Not eCommerce — And It Should Never Be Treated Like It</h3>
+        <p style="color:var(--text-light);font-size:0.92rem;max-width:720px;line-height:1.72;">A common early misstep is dropping eCommerce tactics (broad targeting, "shop now" CTAs, national reach, demand gen) onto local accounts. Local paid media is a digital marketing strategy using location targeting and keyword modifiers to reach an audience within specific geographic areas — and we should only utilize a local strategy if the client is contractually obligated to target a specific location or if they are providing a service with location constraints.</p>
+      </div>
+
+      <div class="callout orange">
+        <div class="callout-label">⚠️ Critical Mindset Shift</div>
+        <p>If a client has an eComm website, they can sell nationwide and should not be using this strategy. But for a med spa, a pool builder, a plastic surgeon, or a wellness center — the user's <strong>location IS their intent</strong>. The location the user is searching for indicates the user's intent (the search defines the user's intent). Treating these clients with eCommerce tactics — broad national reach, generic ad copy, no location modifiers — wastes their already-limited budget and misses the high-intent traffic that actually converts.</p>
+      </div>
+
+      <div class="g2 mt24">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+          <div style="background:rgba(231,76,60,0.07);border-bottom:2px solid rgba(231,76,60,0.18);padding:14px 20px;">
+            <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--error);margin-bottom:5px;">❌ eCommerce / National Language — Avoid for Local</div>
+            <div style="font-size:0.81rem;color:var(--text-light);line-height:1.5;">These approaches assume nationwide reach and online transactions</div>
+          </div>
+          <div style="padding:18px 20px;">
+            <ul class="plain">
+              <li>"Shop our full collection"</li>
+              <li>National keyword targeting with no geo modifier</li>
+              <li>Broad demand gen campaigns on small budgets</li>
+              <li>"Free shipping over $X" messaging</li>
+              <li>Targeting the entire US for a local business</li>
+              <li>Ignoring Google Business Profile</li>
+              <li>Generic landing pages with no city/neighborhood context</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+          <div style="background:rgba(39,174,96,0.07);border-bottom:2px solid rgba(39,174,96,0.18);padding:14px 20px;">
+            <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--success);margin-bottom:5px;">✅ Local-First Language — Use This Instead</div>
+            <div style="font-size:0.81rem;color:var(--text-light);line-height:1.5;">These approaches match how local users actually search and convert</div>
+          </div>
+          <div style="padding:18px 20px;">
+            <ul class="plain">
+              <li>"Serving [City] since [Year]"</li>
+              <li>Geo-modified keywords (service + city/town)</li>
+              <li>"Near Me" campaigns with localized targeting</li>
+              <li>"Book Your Consultation" / "Schedule a Visit"</li>
+              <li>City- and neighborhood-specific landing pages</li>
+              <li>Active Google Business Profile management</li>
+              <li>"Request a Quote" with location context</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="sec-light" id="toc">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Part 1 — Navigation</div>
+      <h2 class="sh-title">What We're Covering</h2>
+      <p class="sh-desc">Click any section to jump directly. This is Part 1 of a 5-part series.</p>
+    </div>
+    <div class="toc-grid">
+      <a href="#what-is-local" class="toc-link"><span class="toc-num">1</span>What "Local Services" Actually Means at OBx</a>
+      <a href="#client-types" class="toc-link"><span class="toc-num">2</span>B2C, B2B & Hybrid Local — Know Your Client</a>
+      <a href="#example-clients" class="toc-link"><span class="toc-num">3</span>Our Example Clients in This Vertical</a>
+      <a href="#budgets-tiers" class="toc-link"><span class="toc-num">4</span>Tier &amp; Budget Reality</a>
+      <a href="#search-intent" class="toc-link"><span class="toc-num">5</span>How Local Users Actually Search</a>
+      <a href="#channels" class="toc-link"><span class="toc-num">6</span>Primary Channels &amp; What Earns Budget</a>
+      <a href="#compliance" class="toc-link"><span class="toc-num">7</span>HIPAA &amp; Compliance Considerations</a>
+      <a href="#mistakes" class="toc-link"><span class="toc-num">8</span>Common Mistakes to Avoid</a>
+      <a href="#recap" class="toc-link"><span class="toc-num">9</span>Recap &amp; What's Next in the Series</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: WHAT IS LOCAL -->
+<section class="sec-white" id="what-is-local">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1</div>
+      <h2 class="sh-title">What "Local Services" Actually Means at OBx</h2>
+      <p class="sh-desc">A local services client at OBx is a business that serves a specific geographic region — either from a physical storefront, a service area footprint, or both. They are not selling products nationally online. Their growth comes from being found by the right person, in the right place, at the moment they need a service.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="step-card"><div class="step-num">1</div><div class="step-content"><h4>Geographic Service Constraint</h4><p>The client either has a physical location customers come to (med spa, dental office, gym) or visits customer locations within a defined service area (pool builders, landscapers, contractors). They cannot meaningfully serve a customer 1,000 miles away.</p></div></div>
+      <div class="step-card"><div class="step-num">2</div><div class="step-content"><h4>Conversion = Lead, Not Online Sale</h4><p>Success is measured in phone calls, form fills, appointment requests, and consultations — not eCommerce transactions. We're getting them to the door; their sales/intake team handles the close.</p></div></div>
+      <div class="step-card"><div class="step-num">3</div><div class="step-content"><h4>Reputation &amp; Reviews Are Core Currency</h4><p>Word of mouth and online reputation drive a disproportionate amount of business. Reviews, ratings, and Google Business Profile signals carry as much weight as keyword rankings.</p></div></div>
+      <div class="step-card"><div class="step-num">4</div><div class="step-content"><h4>Smaller Budgets, Sharper Strategy</h4><p>Most local clients fall in the lower tiers ($4K/month or less). Every dollar has to work harder. Tight campaign structure, smart geo-targeting, and disciplined negative keywords matter more here than anywhere else.</p></div></div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-label">The Local Client Filter</div>
+      <p>A local SEO/Paid approach is intended for businesses <strong>contractually obligated to serve specific areas</strong> or that genuinely operate within those defined locations. Don't "localize" a site or campaign just because a client happens to get most of their work in one area — if they have national capacity and want national leads, that's a different strategy entirely. Always confirm the service-area reality before recommending local-first tactics.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: CLIENT TYPES -->
+<section class="sec-light" id="client-types">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2</div>
+      <h2 class="sh-title">B2C, B2B &amp; Hybrid Local — Know Your Client</h2>
+      <p class="sh-desc">Local services break into three patterns. Each one changes how you target, how you write copy, and what conversions matter. Local paid strategy applies to both B2B and B2C businesses (e.g., Roofers, Doctors, Installation, Pool Builders, etc.).</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="client-card">
+        <div class="client-header ch-b2c"><h3>👥 Local B2C</h3><p>Consumer-facing local services</p></div>
+        <div class="client-body">
+          <div class="client-section"><h4>Who They Are</h4><ul><li>Med spas, plastic surgeons, dental, wellness</li><li>Personal services (salons, gyms, fitness studios)</li><li>Home services for homeowners (pool builders, landscapers)</li></ul></div>
+          <div class="client-section"><h4>Buyer Pattern</h4><ul><li>Single individual makes the decision</li><li>Often emotional + research-driven</li><li>Reviews, photos, before/after content matter a lot</li></ul></div>
+          <div class="client-section"><h4>Primary Conversion</h4><ul><li>Phone call to book</li><li>Online consultation request</li><li>Walk-in / appointment scheduling</li></ul></div>
+        </div>
+      </div>
+      <div class="client-card">
+        <div class="client-header ch-b2b"><h3>🏢 Local B2B</h3><p>Business-facing local services</p></div>
+        <div class="client-body">
+          <div class="client-section"><h4>Who They Are</h4><ul><li>Commercial contractors, B2B installers</li><li>Local equipment service / repair</li><li>Commercial cleaning, commercial landscaping</li></ul></div>
+          <div class="client-section"><h4>Buyer Pattern</h4><ul><li>Procurement manager, facilities lead, or owner</li><li>Longer evaluation, more formal RFQ</li><li>Vendor reliability and references weigh heavily</li></ul></div>
+          <div class="client-section"><h4>Primary Conversion</h4><ul><li>Quote / estimate request</li><li>Phone call to discuss scope</li><li>Site visit scheduling</li></ul></div>
+        </div>
+      </div>
+      <div class="client-card">
+        <div class="client-header ch-hyb"><h3>🏬 Hybrid (Local + eComm)</h3><p>Larger budget exception cases</p></div>
+        <div class="client-body">
+          <div class="client-section"><h4>Who They Are</h4><ul><li>Retail with physical storefronts AND eComm presence</li><li>Example: Johnnie-O (apparel with retail locations)</li><li>NOT pure eCommerce without storefronts</li></ul></div>
+          <div class="client-section"><h4>Buyer Pattern</h4><ul><li>Both walk-in retail shoppers and online buyers</li><li>Often larger budgets — can play in Demand Gen, Meta, TikTok, Merchant Center</li></ul></div>
+          <div class="client-section"><h4>Primary Conversion</h4><ul><li>Online sale + in-store visit</li><li>Both transactional and footfall metrics matter</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">Important Distinction</div>
+      <p><strong>Hybrid (retail + eComm with physical locations) ≠ pure eComm.</strong> A client like Johnnie-O has real storefronts and can support broader channel mixes including Meta, TikTok, Demand Gen, and Merchant Center on top of standard Google Search. But a retail eCommerce client with <em>no physical, standalone storefront</em> is a national eCommerce account — that belongs in a different vertical playbook entirely. Always confirm: <strong>do they have physical service-area locations or not?</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: EXAMPLE CLIENTS -->
+<section class="sec-white" id="example-clients">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3</div>
+      <h2 class="sh-title">Our Example Clients in This Vertical</h2>
+      <p class="sh-desc">Real OBx accounts you may encounter — use these as your mental models when learning the playbook.</p>
+    </div>
+
+    <div class="g2">
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Backyard Oasis</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Type:</strong> Local B2C — Home services / pool & outdoor living</p>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Service Model:</strong> Service-area business (visits customer locations within a defined region)</p>
+        <p><strong style="color:var(--navy)">Search Pattern:</strong> "pool builders [city]", "outdoor kitchen [region]", "backyard remodeling near me"</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💉</div>
+        <h3>Dr. Funk Facial Plastics</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Type:</strong> Local B2C — Healthcare / facial plastic surgery</p>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Service Model:</strong> Physical practice — patients visit the office</p>
+        <p><strong style="color:var(--navy)">Compliance Note:</strong> HIPAA applies — we cannot extract lead data or listen to call recordings</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✨</div>
+        <h3>Belage Center</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Type:</strong> Local B2C — Med spa / aesthetic services</p>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Service Model:</strong> Physical location — clients book appointments</p>
+        <p><strong style="color:var(--navy)">Conversion Mix:</strong> Phone calls, online consultation requests, appointment bookings</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌱</div>
+        <h3>Blades Wellness</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Type:</strong> Local B2C — Wellness / health services</p>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Service Model:</strong> Physical clinic — clients visit for services</p>
+        <p><strong style="color:var(--navy)">Compliance Note:</strong> Depending on services offered, may have HIPAA considerations on lead data</p>
+      </div>
+    </div>
+
+    <div class="callout green mt24">
+      <div class="callout-label">Quick Exercise</div>
+      <p>When you get assigned to one of these clients, spend 10 minutes on their website and Google Business Profile. Answer four questions: <strong>(1)</strong> What service area do they actually cover? <strong>(2)</strong> Do customers come to them, or do they go to customers? <strong>(3)</strong> What's their primary conversion event? <strong>(4)</strong> Are they subject to HIPAA or other compliance constraints? If you can answer all four, you're ready to start.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: BUDGETS & TIERS -->
+<section class="sec-light" id="budgets-tiers">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4</div>
+      <h2 class="sh-title">Tier &amp; Budget Reality</h2>
+      <p class="sh-desc">Most local services clients live in the lower OBx tiers. Knowing this up front shapes what tactics are realistic, what channels are in scope, and how you set client expectations.</p>
+    </div>
+
+    <div class="g4 mb32">
+      <div class="tier-card">
+        <div class="tier-label">Most Common</div>
+        <div class="tier-name">Essentials 1</div>
+        <div class="tier-budget">Entry tier · Smallest budgets</div>
+        <div class="tier-tags"><span class="ttag">SEO Foundation</span><span class="ttag">GBP Mgmt</span><span class="ttag">Tight Scope</span></div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Most Common</div>
+        <div class="tier-name">Essentials 2</div>
+        <div class="tier-budget">Mid-entry · Modest scope</div>
+        <div class="tier-tags"><span class="ttag">SEO + Light Paid</span><span class="ttag">Local Pages</span><span class="ttag">Reviews</span></div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Most Common</div>
+        <div class="tier-name">Essentials 3</div>
+        <div class="tier-budget">Mid · Multi-channel possible</div>
+        <div class="tier-tags"><span class="ttag">SEO + Paid Search</span><span class="ttag">Local Campaigns</span></div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Most Common</div>
+        <div class="tier-name">Professional</div>
+        <div class="tier-budget">Upper-mid · More flexibility</div>
+        <div class="tier-tags"><span class="ttag">SEO + Paid</span><span class="ttag">Paid Social</span><span class="ttag">Email</span></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px">What Lower Budgets Actually Mean for Strategy</h3>
+    <table class="tbl mb32">
+      <thead><tr><th>Budget Reality</th><th>Strategic Implication</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ad spend often under $4,000/month</strong></td><td>Every keyword has to earn its spot. No room for broad match experiments or untested branded keywords. Tight, intent-focused campaigns only.</td></tr>
+        <tr><td><strong>Limited content production capacity</strong></td><td>SEO has to focus on the highest-impact pages first — service pages, location pages, GBP — not deep blog programs.</td></tr>
+        <tr><td><strong>Small or no internal marketing team</strong></td><td>The client relies on you to set strategy and prioritize. Decision fatigue is real — give clear recommendations, not menus.</td></tr>
+        <tr><td><strong>Paid Social often out of scope</strong></td><td>Paid Social and email enter when budget allows — typically Professional tier and up. Don't promise channels their tier can't support.</td></tr>
+        <tr><td><strong>Lead quality matters more than volume</strong></td><td>A small business cannot handle floods of unqualified leads. Targeting precision protects their team's time as much as their budget.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ The Exception: Hybrid Retail with Larger Budgets</div>
+      <p>The retail clients with physical storefronts (e.g., Johnnie-O) often carry significantly larger budgets and can support Demand Gen, Meta, TikTok, Merchant Center, and standard Google Search alongside the local-store-locator strategy. These are exceptions — most of the local services book lives in Essentials and Professional tiers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: SEARCH INTENT -->
+<section class="sec-white" id="search-intent">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5</div>
+      <h2 class="sh-title">How Local Users Actually Search</h2>
+      <p class="sh-desc">The biggest gap between new teammates and experienced local-vertical strategists is understanding the real search behavior. Local users do not search the way national/eComm users search.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">The Three Local Search Patterns</h3>
+    <div class="g3 mb32">
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>Geo-Modified Searches</h3>
+        <p><strong>"facial plastic surgeon Houston"</strong></p>
+        <p style="margin-top:10px">The user explicitly types a location. Very high intent — they know what they want and where. These are your highest-priority keywords.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧭</div>
+        <h3>"Near Me" Searches</h3>
+        <p><strong>"med spa near me"</strong></p>
+        <p style="margin-top:10px">User relies on device location. Intent is local but they haven't named the city. Google interprets location automatically.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>Implicit Local Searches</h3>
+        <p><strong>"pool builders" (searched from a phone in Tomball)</strong></p>
+        <p style="margin-top:10px">No geo modifier, but Google infers local intent from device location. Often returns Local Pack results anyway.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">Hyperlocal Beats Metro</h3>
+    <div class="callout green">
+      <div class="callout-label">Real Example</div>
+      <p>If your client is located in <strong>Tomball</strong>, then <em>"tomball pool builders"</em> is a stronger target than <em>"houston pool builders"</em> — even though Tomball is part of the greater Houston area. Why? Because the user typing "tomball pool builders" is signaling much higher local intent and is more likely to actually convert with a Tomball-area provider. Don't reach for the bigger metro name unless the client genuinely services the entire area.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px;margin-top:32px">Geo-Located vs. Geo-Modified Keywords</h3>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:18px;max-width:720px;line-height:1.7;">An important distinction from local SEO research that shapes how we evaluate competitors and rankings.</p>
+    <table class="tbl">
+      <thead><tr><th>Keyword Type</th><th>Definition</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Geo-located</strong></td><td>Keywords tracked from a specific location, i.e. vegan pizza searched from the University District in Seattle, WA. Depending on the competitiveness of your market, you may have different competitors for each geo-located keyword search.</td><td>"med spa" tracked from a phone in Belage's neighborhood</td></tr>
+        <tr><td><strong>Geo-modified</strong></td><td>Keywords with location modifiers included in the phrase, i.e. vegan pizza Seattle. Your competitors for each geo-modified keyword can also vary from search to search in competitive markets.</td><td>"med spa Houston" — the location is in the search string itself</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout gold mt24">
+      <div class="callout-label">Why This Matters</div>
+      <p>Every geographic market you serve is subject to different competitors. To dominate your markets, you should analyze and track the unique competitive landscape for each one. Your client's "competitors" change depending on where the searcher is located — so a single rank tracker number doesn't tell the full story. Build the habit of thinking about ranking in terms of <em>"where is the searcher when they see us?"</em> not just <em>"what position are we?"</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: PRIMARY CHANNELS -->
+<section class="sec-light" id="channels">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6</div>
+      <h2 class="sh-title">Primary Channels &amp; What Earns Budget</h2>
+      <p class="sh-desc">In the local services vertical, four channels carry the load — but they don't all show up on every account. Tier and budget determine which ones get activated.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>SEO — The Foundation</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Always in scope.</strong> Local SEO is the backbone of every account in this vertical. Includes Google Business Profile optimization, location/service pages, on-page signals, and reputation management.</p>
+        <p><strong style="color:var(--navy)">Why first:</strong> Compounds over time, drives non-paid traffic, supports the Local Pack which is often the most clicked SERP feature for local intent.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <h3>Paid Search — The Volume Lever</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">In scope for Essentials 2+ in most cases.</strong> Google Ads (and Microsoft Ads) targeting geo-modified, near-me, and national-geo campaigns to capture high-intent searches.</p>
+        <p><strong style="color:var(--navy)">Why second:</strong> Fastest way to generate leads when SEO is still maturing. Tight campaign structure is critical at low budgets.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Paid Social — When Budget Allows</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Typically Professional tier and up.</strong> Meta (Facebook/Instagram) for awareness, reach, and lead generation in local geographies.</p>
+        <p><strong style="color:var(--navy)">When it works:</strong> Visual services (med spa, plastic surgery, aesthetic), community-driven brands, retail with storefronts. Less ROI for pure transactional service searches.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✉️</div>
+        <h3>Email — When It Makes Sense</h3>
+        <p style="margin-bottom:10px"><strong style="color:var(--navy)">Selective use.</strong> Email shines for businesses with repeat-customer dynamics — wellness, med spa memberships, recurring services — and businesses with a healthy existing list.</p>
+        <p><strong style="color:var(--navy)">When to skip:</strong> One-time purchase services with no list, or clients without the bandwidth to maintain a sender reputation.</p>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 Budget Allocation Principle</div>
+      <p>For most lower-tier local accounts, the practical mix is: <strong style="color:var(--gold)">SEO + Paid Search first.</strong> Paid Social and Email are added as budget grows or when the client's business model clearly supports them (visual services for Social, repeat-customer dynamics for Email). Never spread a small budget thin across four channels — concentration beats fragmentation for local accounts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: COMPLIANCE -->
+<section class="sec-white" id="compliance">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7</div>
+      <h2 class="sh-title">HIPAA &amp; Compliance Considerations</h2>
+      <p class="sh-desc">Several of our local services clients operate in regulated industries — particularly healthcare (med spa, plastic surgery, wellness) and legal. These require specific operational adjustments.</p>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ Critical Compliance Rule</div>
+      <p><strong>For healthcare and legal clients with HIPAA or attorney-client privilege requirements: we cannot extract lead data and we cannot listen to phone call recordings.</strong> This means tools that would normally help us learn from real conversations and form submissions (CallRail transcript review, LOOP-level form content inspection) have to be used differently. We can see that a call or form happened — we cannot review the content.</p>
+    </div>
+
+    <div class="g3 mt32">
+      <div class="card">
+        <div class="card-icon">🏥</div>
+        <h3>Healthcare Clients (HIPAA)</h3>
+        <p>Med spas, plastic surgeons, wellness clinics, dental offices. Any time the lead/call may contain Protected Health Information (PHI), we are restricted on what we can access and store.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <h3>Legal Clients</h3>
+        <p>Attorneys and law firms. Calls and forms may contain privileged information about a potential case. Same operational principle: no listening to recordings, no extracting lead detail.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧰</div>
+        <h3>What We Can Still Do</h3>
+        <p>Track conversion counts, source attribution, keyword/campaign performance, GBP insights, page-level engagement, and aggregated form/call volume. We measure outcomes — we just don't inspect the contents.</p>
+      </div>
+    </div>
+
+    <div class="callout green mt24">
+      <div class="callout-label">Strategic Implication</div>
+      <p>Because we lose the ability to review specific lead content for these clients, we have to lean more heavily on <strong>signal patterns</strong> — keyword themes generating calls, landing pages with high engagement, campaign-level conversion rates — and on <strong>client-side feedback</strong>. Build a habit of asking the client (or their intake team) periodically: <em>"Are the leads coming through the right type for your practice? Any patterns we should adjust toward or away from?"</em> That conversation replaces the transcript review we'd do on a non-HIPAA account.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: COMMON MISTAKES -->
+<section class="sec-light" id="mistakes">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 8</div>
+      <h2 class="sh-title">Common Mistakes to Avoid</h2>
+      <p class="sh-desc">The patterns that trip up people new to this vertical. Knowing them in advance saves you (and the client) months of misdirection.</p>
+    </div>
+
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Focusing on high-level technical SEO optimization while ignoring how users actually search for local businesses.</strong> Core Web Vitals and schema are important — but they're not what wins local. Local users search for business type + location, and if you don't have pages and campaigns built around that, you're invisible to the actual buyer.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Lead with the keyword pattern <strong>"service + city/town"</strong> across SEO and Paid. Build location pages, geo-modified campaigns, and a strong Google Business Profile. Technical work supports this — it doesn't replace it.</p></div>
+    </div>
+
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Running Paid Search with broad keywords and no location modifiers.</strong> A campaign targeting "med spa" with US-wide targeting will burn a $4K budget in days and deliver nothing. This is the single most common Paid Search mistake on new local accounts.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Use the OBx local campaign structure: <strong>Local Geo Modified, National Geo Modified, and Near Me campaigns</strong> with tight location targeting and proactive negative keywords. Part 3 covers this in full.</p></div>
+    </div>
+
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Skipping local landing pages.</strong> Sending all traffic to a generic home page or services page means you have nothing telling Google (or the user) that you serve their specific town. Rankings and ad relevance both suffer.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Build dedicated area-served pages for each city/town the client genuinely services. Each one needs unique content about the business's experience in that area — not just a duplicated template with the city name swapped.</p></div>
+    </div>
+
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Confusing Google Business Profile (Local Pack) results with Local Organic results.</strong> They are two different SERP features, ranked by different signals. Telling a client "we'll improve your rankings" without specifying which one creates expectation mismatches.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Always distinguish the two in client conversations. <strong>Local Pack</strong> = the map results, driven by GBP and physical location. <strong>Local Organic</strong> = the standard blue links with local intent, driven by on-page signals and authority. Part 2 covers the full distinction.</p></div>
+    </div>
+
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Applying eCommerce or national playbooks to local clients.</strong> Demand Gen on a $3K Essentials 1 budget. Broad shopping campaigns. National keyword targets. None of these match how local buyers behave.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Match the playbook to the model. Local-first tactics for local clients. Save the broader plays for the hybrid retail accounts that actually have the budget and the storefront network to support them.</p></div>
+    </div>
+
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Asking to listen to call recordings on a HIPAA client.</strong> Even with good intent, requesting access to call content for a healthcare client puts the client (and OBx) in a compliance bind.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Know which of your clients carry compliance constraints before you ask any question about lead data. For those clients, work with conversion counts, source attribution, and client-side feedback on lead quality instead.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag wht">Section 9 — Recap</div>
+      <h2 class="sh-title wht">What You Can Now Do</h2>
+      <p class="sh-desc wht">After completing Part 1, you should be able to apply these skills immediately on any local services account.</p>
+    </div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Apply the Local-First Mindset</div><div class="recap-desc">Understand why local services is fundamentally different from eCommerce and national accounts — and why location IS the intent, not just a filter.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">Identify the Client Type</div><div class="recap-desc">Distinguish B2C local, B2B local, and hybrid retail (storefront + eComm) — and adjust your channel mix and messaging accordingly.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Set Realistic Budget Expectations</div><div class="recap-desc">Know that most local accounts live in Essentials and Professional tiers, what each channel costs to activate, and why concentration beats fragmentation at low budgets.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Understand How Local Users Search</div><div class="recap-desc">Recognize geo-modified, near-me, and implicit local search patterns — and why hyperlocal keywords often outperform broader metro targeting.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Handle HIPAA &amp; Compliance Correctly</div><div class="recap-desc">Know which clients carry compliance constraints, what you can and can't access, and how to substitute client-side feedback for lead-content review.</div></div>
+      <div class="recap-item"><div class="recap-num">06</div><div class="recap-title">Avoid the Top New-Teammate Mistakes</div><div class="recap-desc">Skip the high-level-only SEO trap, the broad-PPC trap, and the missing-location-pages trap that derail most first attempts in this vertical.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT PART CTA -->
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Up Next in the Series</div>
+    <div class="npc-title">Part 2: Local SEO Considerations</div>
+    <div class="npc-desc">Local Pack vs. Local Organic, Google Business Profile depth, service area pages, the Moz local website checklist, reputation management, and hyperlocal keyword strategy.</div>
+    <a href="local-services-part2.html" class="npc-btn">Start Part 2 →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Local Services — Part 1 of 5</span>
+    <span>Foundations</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+</body>
+</html>

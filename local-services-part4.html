@@ -1,0 +1,487 @@
+<!-- local-services-part4.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Local Services — Part 4: Email Considerations</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p1: #0E7C5C; --p2: #1B4F72; --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 14px rgba(0,0,0,0.28); }
+.brand-main { color: #fff; font-size: 1.35rem; font-weight: 900; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.66rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.38); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(91,63,168,0.25); color: #B19CDE; border: 1px solid rgba(91,63,168,0.35); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+.brand { display: flex; align-items: center; }
+.series-nav { position: sticky; top: 58px; z-index: 200; background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; }
+.snav-label { color: rgba(255,255,255,0.3); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.09); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.82); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p4); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; }
+.sn-1{background:var(--p1);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);} .sn-4{background:var(--p4);} .sn-5{background:var(--p5);}
+.hero { background: var(--navy); padding: 80px 48px 72px; }
+.hero-inner { max-width: 1060px; margin: 0 auto; }
+.hero-eyebrow { color: var(--gold); font-size: 0.74rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
+.hero h1 { color: #fff; font-size: 3.1rem; font-weight: 900; line-height: 1.14; margin-bottom: 20px; }
+.hero h1 em { color: var(--p4); font-style: normal; }
+.hero-sub { color: rgba(255,255,255,0.68); font-size: 1.03rem; max-width: 600px; margin-bottom: 38px; line-height: 1.72; }
+.hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); border-radius: 20px; padding: 6px 14px; color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+.hero-pill .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p4) 0%, var(--gold) 50%, var(--blue) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 68px 0; }
+section.sec-white { background: #fff; padding: 68px 0; }
+section.sec-dark { background: var(--navy); padding: 68px 0; }
+.sh { margin-bottom: 38px; }
+.sh-tag { color: var(--p4); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-title { font-size: 1.95rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.92rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card-icon { font-size: 2rem; margin-bottom: 14px; }
+.card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card p { font-size: 0.87rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); font-weight: 700; }
+.callout { border-radius: 10px; padding: 20px 24px; margin: 28px 0; border-left: 4px solid; }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.orange { background: rgba(212,85,26,0.06); border-color: var(--orange); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.green { background: rgba(14,124,92,0.06); border-color: var(--p1); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.green .callout-label { color: var(--p1); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.85); }
+.fit-card { background: #fff; border-radius: 12px; border: 1px solid var(--border); padding: 22px; border-top: 4px solid; }
+.fit-strong { border-top-color: var(--success); }
+.fit-medium { border-top-color: var(--gold); }
+.fit-weak { border-top-color: var(--error); }
+.fit-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+.fit-strong .fit-label { color: var(--success); }
+.fit-medium .fit-label { color: #B07000; }
+.fit-weak .fit-label { color: var(--error); }
+.fit-card h3 { color: var(--navy); font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+.fit-card p { color: var(--text-light); font-size: 0.84rem; line-height: 1.6; }
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+.toc-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.toc-link { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: var(--text); font-size: 0.85rem; font-weight: 600; }
+.toc-link:hover { background: var(--navy); color: #fff; }
+.toc-num { width: 30px; height: 30px; background: var(--p4); color: #fff; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.87rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p4); }
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;} .mb32{margin-bottom:32px;}
+.next-part-cta { background: var(--navy-dark); padding: 56px 48px; text-align: center; }
+.npc-inner { max-width: 580px; margin: 0 auto; }
+.npc-label { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title { color: #fff; font-size: 1.55rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc { color: rgba(255,255,255,0.52); font-size: 0.88rem; margin-bottom: 26px; line-height: 1.68; }
+.npc-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--p5); color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; }
+.footer { background: #0D1C2B; padding: 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-meta { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.74rem; }
+[id]::before { content: ''; display: block; height: 76px; margin-top: -76px; pointer-events: none; }
+@media (max-width: 900px) {
+  .g2,.g3,.g4 { grid-template-columns: 1fr; }
+  .toc-grid,.recap-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.1rem; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">
+    <span class="brand-main">Outer<em>Box</em></span>
+    <span class="brand-school">B·SCHOOL</span>
+  </div>
+  <span class="nav-badge">Part 4 of 5 · Local Services</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="local-services-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="local-services-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Considerations</a>
+  <a href="local-services-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>Paid Considerations</a>
+  <a href="local-services-part4.html" class="snav-link active"><span class="snav-num sn-4">4</span>Email Considerations</a>
+  <a href="local-services-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Communicating Strategy</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">B·School Training Series — Local Services</div>
+    <h1>Email <em>Considerations</em></h1>
+    <p class="hero-sub">When email earns a place in a local services account, what programs actually move the needle for service businesses, and the compliance discipline required for healthcare and legal senders.</p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span>Part 4 of 5</span>
+      <span class="hero-pill"><span class="dot"></span>~35 min</span>
+    </div>
+  </div>
+</section>
+<div class="accent-bar"></div>
+
+<!-- INTRO -->
+<section class="sec-white">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Email in the Local Context</div>
+      <h2 class="sh-title">Email Earns Its Place — It's Not a Default</h2>
+      <p class="sh-desc">Unlike SEO and Paid, email is not always part of a local services program. It earns budget when the client's business model actually supports it — repeat customers, a real list, the bandwidth to maintain a sender reputation. When those conditions are met, email becomes one of the highest-ROI channels in the mix. When they're not, it becomes a cost without a payoff.</p>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 The Local Email Test</div>
+      <p>Before recommending email on a local account, answer three questions: <strong style="color:var(--gold)">(1)</strong> Does this client have repeat-customer dynamics? <strong style="color:var(--gold)">(2)</strong> Do they have an existing list of 500+ engaged contacts (or a clear path to build one)? <strong style="color:var(--gold)">(3)</strong> Are they on a tier (Professional or up) that can fund both the platform and the production time? If any of these is "no," email probably waits until conditions change.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="sec-light" id="toc">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Part 4 — Navigation</div>
+      <h2 class="sh-title">What We're Covering</h2>
+    </div>
+    <div class="toc-grid">
+      <a href="#fit" class="toc-link"><span class="toc-num">1</span>Email Fit by Local Business Type</a>
+      <a href="#programs" class="toc-link"><span class="toc-num">2</span>What Email Programs Actually Work for Local</a>
+      <a href="#list-building" class="toc-link"><span class="toc-num">3</span>List Building for Local Businesses</a>
+      <a href="#segmentation" class="toc-link"><span class="toc-num">4</span>Segmentation for Service Businesses</a>
+      <a href="#compliance" class="toc-link"><span class="toc-num">5</span>HIPAA &amp; Compliance for Email Programs</a>
+      <a href="#measurement" class="toc-link"><span class="toc-num">6</span>Measurement &amp; Integration with SEO/Paid</a>
+      <a href="#mistakes" class="toc-link"><span class="toc-num">7</span>Common Mistakes to Avoid</a>
+      <a href="#recap" class="toc-link"><span class="toc-num">8</span>Recap</a>
+    </div>
+  </div>
+</section>
+
+<!-- FIT BY TYPE -->
+<section class="sec-white" id="fit">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1</div>
+      <h2 class="sh-title">Email Fit by Local Business Type</h2>
+      <p class="sh-desc">Not every local services business is a good email candidate. The fit comes down to repeat-customer dynamics and the existence of a meaningful list.</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="fit-card fit-strong">
+        <div class="fit-label">✓ Strong Fit</div>
+        <h3>Med Spa, Wellness, Aesthetic Clinics</h3>
+        <p>High repeat dynamics (memberships, recurring treatments), visual content, existing patient list, often have a CRM or booking system to pull from. Email drives rebooking and upsell.</p>
+      </div>
+      <div class="fit-card fit-strong">
+        <div class="fit-label">✓ Strong Fit</div>
+        <h3>Gyms, Fitness Studios, Wellness Centers</h3>
+        <p>Members are a recurring relationship. Class schedules, challenges, retention campaigns, and referral programs all live in email. Often have a strong list-building moment at signup.</p>
+      </div>
+      <div class="fit-card fit-strong">
+        <div class="fit-label">✓ Strong Fit</div>
+        <h3>Hybrid Retail (Storefronts + eComm)</h3>
+        <p>Larger budgets, larger lists, real ROI from promotional and lifecycle email. This is where the most sophisticated email programs in the local book typically live.</p>
+      </div>
+      <div class="fit-card fit-medium">
+        <div class="fit-label">~ Medium Fit</div>
+        <h3>Plastic Surgery, Specialty Healthcare</h3>
+        <p>Lower repeat frequency, but high-value patients with education-driven nurture journeys. Email can work for newsletter content and procedure education — but HIPAA constraints reshape what you can send.</p>
+      </div>
+      <div class="fit-card fit-medium">
+        <div class="fit-label">~ Medium Fit</div>
+        <h3>Home Services with Maintenance Cycles</h3>
+        <p>Pool builders, landscapers — repeat business exists in maintenance, seasonal services, and referrals. Email works for off-season nurture and reactivation if the list is healthy.</p>
+      </div>
+      <div class="fit-card fit-weak">
+        <div class="fit-label">✗ Weak Fit</div>
+        <h3>One-Time Project Services with No List</h3>
+        <p>If the client has 50 contacts in a spreadsheet and a one-time-purchase service model, email isn't going to move the business meaningfully. The investment goes further in SEO or Paid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="sec-light" id="programs">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2</div>
+      <h2 class="sh-title">What Email Programs Actually Work for Local</h2>
+      <p class="sh-desc">Skip the complex multi-track lifecycle programs that work for enterprise eCommerce. For local services, simpler programs win — because they're maintainable on small teams and they match the buyer behavior.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <div class="card-icon">📰</div>
+        <h3>Monthly Newsletter</h3>
+        <p>The workhorse of local email. Mix of business updates, helpful content, seasonal promotions, and reviews/testimonials. Predictable cadence, modest production cost, keeps the brand in front of past customers.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎉</div>
+        <h3>Seasonal &amp; Event Promotions</h3>
+        <p>Tied to real moments — Mother's Day specials at a med spa, spring opening at a pool builder, end-of-year wellness packages. High open rates, clear conversion ask, often the highest-revenue emails of the year.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <h3>Appointment &amp; Booking Reminders</h3>
+        <p>Often handled by the booking platform itself, but if not, this is operational email gold. Reduces no-shows, drives rebooking, and provides natural touchpoints for review requests.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⭐</div>
+        <h3>Review &amp; Referral Asks</h3>
+        <p>Triggered after a service is completed. One of the highest-ROI emails in the local stack because reviews feed directly back into the GBP/SEO flywheel covered in Part 2.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💤</div>
+        <h3>Reactivation / Win-Back</h3>
+        <p>Targeted at customers who haven't engaged or booked in 6+ months. Often a single discount or "we miss you" message. Lower volume, but the ROI per send is typically strong.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Educational Nurture (Healthcare)</h3>
+        <p>For plastic surgery, med spa, dental — multi-touch nurture before booking is common because patients research extensively. Procedure explainers, before/after content (HIPAA-safe), pricing FAQs, recovery overviews.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIST BUILDING -->
+<section class="sec-white" id="list-building">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3</div>
+      <h2 class="sh-title">List Building for Local Businesses</h2>
+      <p class="sh-desc">Most local clients don't have a list-building program. They have a booking system, a phone, and a stack of business cards. Part of your job is building the system that turns ongoing customer flow into list growth.</p>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>List Source</th><th>How to Capture</th><th>Best For</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Website forms</strong></td><td>Consultation requests, contact forms, quote requests — all should include opt-in checkbox for marketing emails</td><td>Every local business</td></tr>
+        <tr><td><strong>In-person capture</strong></td><td>Sign-up tablet at checkout, post-visit form, business card drop with opt-in</td><td>Storefront businesses (spa, gym, retail)</td></tr>
+        <tr><td><strong>Booking system sync</strong></td><td>Integrate the booking/CRM platform with the email platform so new bookings flow to the list automatically (with consent)</td><td>Any client using a digital booking system</td></tr>
+        <tr><td><strong>Content offers</strong></td><td>Downloadable guide (e.g., "Pool Maintenance Calendar"), educational PDF, checklist</td><td>Service businesses with informational content angles</td></tr>
+        <tr><td><strong>Promotional offers</strong></td><td>"Get 10% off your first service when you subscribe" — common for retail, fitness, wellness</td><td>Businesses with promotional comfort and pricing flexibility</td></tr>
+        <tr><td><strong>Past customer import</strong></td><td>One-time import of historical customer list with consent confirmation. Must follow CAN-SPAM and any state-level rules.</td><td>New email programs starting from existing customer base</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SEGMENTATION -->
+<section class="sec-light" id="segmentation">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4</div>
+      <h2 class="sh-title">Segmentation for Service Businesses</h2>
+      <p class="sh-desc">Sophisticated segmentation isn't always realistic on a small local list. Start with a few high-value segments and grow from there.</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="card">
+        <div class="card-icon">🆕</div>
+        <h3>New Subscribers / Recent Leads</h3>
+        <p>Welcome series, intro to services, soft consultation ask. Highest engagement, set the tone for the relationship.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>Active Customers</h3>
+        <p>Past 6–12 months of service. Targets for upsell, cross-sell, referral ask, and review request. Bread-and-butter audience.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">😴</div>
+        <h3>Lapsed / Inactive</h3>
+        <p>No booking or engagement in 6–12+ months. Reactivation messaging, special offer, or "we'd love to see you back" content.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>Location Segments (Multi-Location)</h3>
+        <p>For clients with multiple locations, segment by nearest location. Local hours, local promotions, local staff content drive higher relevance.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛍️</div>
+        <h3>Service Interest</h3>
+        <p>If you can capture which service a customer used, segment around it. Botox patients get different content than facelift patients. Lawn customers get different content than pool customers.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⭐</div>
+        <h3>VIPs / High-Value</h3>
+        <p>Members, repeat patients, top spenders. Earlier access to bookings, exclusive offers, personal touchpoints. Often a small but disproportionately valuable segment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section class="sec-white" id="compliance">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5</div>
+      <h2 class="sh-title">HIPAA &amp; Compliance for Email Programs</h2>
+      <p class="sh-desc">For healthcare clients (plastic surgery, med spa, wellness, dental) the same compliance rules covered in Part 1 apply to email — with some specific operational implications.</p>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ Core HIPAA Email Rule</div>
+      <p>Email content cannot include Protected Health Information (PHI) unless the client has a HIPAA-compliant email infrastructure with patient consent. For most marketing email programs, the safe approach is: <strong>treat email as a marketing channel, not a clinical communication channel.</strong> Promotional content, educational content, general practice updates — all fine. Patient-specific health information, appointment details that identify procedures, condition-specific content tied to a known patient — all require compliance review.</p>
+    </div>
+
+    <div class="g2 mt32">
+      <div class="card">
+        <h3>✅ Safe Email Content for Healthcare Clients</h3>
+        <ul class="plain mt16">
+          <li>General educational content about procedures or services</li>
+          <li>Practice updates, new staff, new locations</li>
+          <li>Generic promotional offers (not tied to individual patient history)</li>
+          <li>Newsletter content, before/after with patient consent, blog highlights</li>
+          <li>Event invitations, open houses, community engagement</li>
+          <li>Generic appointment reminders ("you have an upcoming appointment") without procedure detail</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>❌ Content That Requires Review or Avoidance</h3>
+        <ul class="plain mt16">
+          <li>Procedure-specific content sent to known patients of that procedure</li>
+          <li>Patient testimonials or images without explicit signed consent</li>
+          <li>Detailed appointment information including procedure type</li>
+          <li>Personalized health recommendations tied to a patient's chart</li>
+          <li>Any content that confirms a recipient is a patient receiving specific care</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout green mt24">
+      <div class="callout-label">When in Doubt</div>
+      <p>Default to the safer content path and surface the question to the client. Most clinical practices already have HIPAA-aware marketing guidelines internally. Ask. The client should tell you what they're comfortable sending — don't guess.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEASUREMENT -->
+<section class="sec-light" id="measurement">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6</div>
+      <h2 class="sh-title">Measurement &amp; Integration with SEO/Paid</h2>
+      <p class="sh-desc">Email's value compounds when it works with the other channels — not when it operates in a silo.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <h3>📊 Core Email Metrics for Local</h3>
+        <ul class="plain mt16">
+          <li>Open rate &amp; click-through rate (engagement health)</li>
+          <li>List growth rate (program sustainability)</li>
+          <li>Bookings or form fills attributed to email (direct conversion)</li>
+          <li>Review submissions driven by email asks (SEO feed-back)</li>
+          <li>Unsubscribe &amp; complaint rate (list health)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🔄 How Email Reinforces SEO &amp; Paid</h3>
+        <ul class="plain mt16">
+          <li>Review-request emails feed reviews into GBP (Local Pack lever)</li>
+          <li>Newsletter traffic to blog content reinforces engagement signals</li>
+          <li>Past customers driven back to the site can re-enter the paid funnel</li>
+          <li>Email-captured audiences can become Customer Match audiences in Paid</li>
+          <li>Email engagement data informs segmentation for future paid social</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISTAKES -->
+<section class="sec-white" id="mistakes">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7</div>
+      <h2 class="sh-title">Common Mistakes to Avoid</h2>
+      <p class="sh-desc">The patterns that derail local email programs most often.</p>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>The Mistake</th><th>What to Do Instead</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Recommending email on a client without a real list</strong></td><td>If they have under 500 engaged contacts and no plan to build one, prioritize SEO and Paid first. Revisit email when there's a list to work with.</td></tr>
+        <tr><td><strong>Trying to run sophisticated lifecycle programs at low budgets</strong></td><td>Start with a monthly newsletter, seasonal promos, and review asks. That's enough for most local programs. Add complexity only when the basics are working.</td></tr>
+        <tr><td><strong>Ignoring HIPAA in healthcare email content</strong></td><td>Default to general/promotional content. Confirm with the client before any patient-specific personalization. Document what they've approved for repeat use.</td></tr>
+        <tr><td><strong>Treating email as a silo</strong></td><td>Build the connections explicitly — review asks feed GBP, customer match feeds Paid, engaged subscribers feed retargeting. Email's compounding value is in those connections.</td></tr>
+        <tr><td><strong>Sending without segmentation on a growing list</strong></td><td>Once the list passes 1,000 contacts, basic segmentation (active vs. lapsed, service interest) almost always lifts performance.</td></tr>
+        <tr><td><strong>Letting the sender reputation drift</strong></td><td>Monitor bounce rate, complaint rate, and engagement. A list that hasn't been cleaned in a year will start damaging deliverability across the entire program.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh"><div class="sh-tag wht">Part 4 — Recap</div><h2 class="sh-title wht">What You Can Now Do</h2><p class="sh-desc wht">After completing Part 4, you should be able to qualify, scope, and execute email programs for the right local services clients.</p></div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Qualify Email Fit Quickly</div><div class="recap-desc">Apply the three-question test (repeat dynamics, real list, tier capacity) to determine whether email belongs in a local account's mix.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">Choose the Right Email Programs</div><div class="recap-desc">Pick from the core local email programs — newsletter, seasonal, reminders, review asks, reactivation, educational nurture — based on the client's business model.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Build List-Capture Systems</div><div class="recap-desc">Set up website forms, in-person capture, booking integrations, and content/promotional opt-ins that turn ongoing customer flow into list growth.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Segment Sensibly</div><div class="recap-desc">Start with new, active, and lapsed segments. Add service interest, location, and VIP segments as the list grows and data supports it.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Handle HIPAA in Email Correctly</div><div class="recap-desc">Default to general/promotional content for healthcare clients, avoid PHI without infrastructure and consent, and surface the question to the client when in doubt.</div></div>
+      <div class="recap-item"><div class="recap-num">06</div><div class="recap-title">Integrate Email With SEO &amp; Paid</div><div class="recap-desc">Use review-request emails to feed GBP, customer match to feed Paid, and engagement data to inform segmentation across the program.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Up Next in the Series</div>
+    <div class="npc-title">Part 5: Communicating Strategy</div>
+    <div class="npc-desc">How to talk about local strategy with clients, translating channel work into business outcomes, handling common objections at small budgets — and the certificate of completion for the full Local Services training.</div>
+    <a href="local-services-part5.html" class="npc-btn">Start Part 5 →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Local Services — Part 4 of 5</span>
+    <span>Email Considerations</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+</body>
+</html>
